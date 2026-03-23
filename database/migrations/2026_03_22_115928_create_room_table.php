@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('room_type');
             $table->string('capacity');
             $table->string('amenities');
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }
