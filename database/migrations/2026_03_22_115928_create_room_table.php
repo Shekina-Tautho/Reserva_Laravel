@@ -16,7 +16,7 @@ return new class extends Migration
 
             //FK
             $table->foreignId('hotel_id')
-                ->constrained('hotel')
+                ->constrained('hotel', 'hotel_id')
                 ->onDelete('cascade');
             
             $table->string('room_type');

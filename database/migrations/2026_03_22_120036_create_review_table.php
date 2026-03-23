@@ -16,17 +16,17 @@ return new class extends Migration
 
             //FK
             $table->foreignId('user_id')
-                ->constrained('users')
+                ->constrained('users', 'user_id')
                 ->onDelete('cascade');
 
             //FK
             $table->foreignId('hotel_id')
-                ->constrained('hotel')
+                ->constrained('hotel', 'hotel_id')
                 ->onDelete('cascade');
 
             //FK
             $table->foreignId('booking_id')
-                ->constrained('booking')
+                ->constrained('bookings', 'booking_id')
                 ->onDelete('cascade');
 
             $table->unsignedTinyInteger('rating');
