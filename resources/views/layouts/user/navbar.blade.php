@@ -19,22 +19,22 @@
         </div>
 
         <div class="col-6 d-flex justify-content-center gap-5">
-            <a class="tabs {{ request()->is('homepage') ? 'active' : '' }}" href="{{ route('homepage') }}">Home</a>
-            <a class="tabs {{ request()->is('hotels') ? 'active' : '' }}" href="{{ route('hotels') }}">Hotels</a>
-            <a class="tabs {{ request()->is('contacts') ? 'active' : '' }}" href="{{ route('contacts') }}">Contacts</a>
+            <a class="tabs {{ request()->is('pages.user.homepage') ? 'active' : '' }}" href="/">Home</a>
+            <a class="tabs {{ request()->is('pages.user.hotels') ? 'active' : '' }}" href="/hotels">Hotels</a>
+            <a class="tabs {{ request()->is('pages.user.contacts') ? 'active' : '' }}" href="/contacts">Contacts</a>
         </div>
 
         <div class="col-3 d-flex gap-4 justify-content-end px-5">
             @auth
-                <a href="{{ route('profile') }}" class="d-flex align-items-center text-decoration-none">
+                <a href="" class="d-flex align-items-center text-decoration-none">
                     <div class="profile-circle d-flex justify-content-center align-items-center rounded-circle me-2">
                         <i class="bi bi-person-fill text-white"></i>
                     </div>
                     <span class="text-dark">{{ Auth::user()->first_name }}</span>
                 </a>
             @else
-                <a class="login-btn pb-1" href="{{ route('login') }}">Log In</a>
-                <a class="btn signup-btn p-2 px-4" href="{{ route('signup') }}">Sign Up</a>
+                <a class="login-btn pb-1" href="">Log In</a>
+                <a class="btn signup-btn p-2 px-4" href="">Sign Up</a>
             @endauth
         </div>
     </div>
