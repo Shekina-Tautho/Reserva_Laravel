@@ -19,7 +19,7 @@
         </div>
 
         <div class="col-6 d-flex justify-content-center gap-5">
-            <a class="tabs {{ request()->is('pages.user.homepage') ? 'active' : '' }}" href="/">Home</a>
+            <a class="tabs {{ request()->is('pages.user.homepage') ? 'active' : '' }}" href="/homepage">Home</a>
             <a class="tabs {{ request()->is('pages.user.hotels') ? 'active' : '' }}" href="/hotels">Hotels</a>
             <a class="tabs {{ request()->is('pages.user.contacts') ? 'active' : '' }}" href="/contacts">Contacts</a>
         </div>
