@@ -4,6 +4,7 @@
 
 @section('content')
 
+<!--Include Homepage CSS File-->
 <link rel="stylesheet" href="{{ asset('/storage/css/homepage.css') }}"/>
 
 <div class="container-fluid main-div">
