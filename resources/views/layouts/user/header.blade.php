@@ -14,6 +14,7 @@
 
         <!--CSS Styles for Homepage, Hotels, & Contacts-->
         <style>
+            /*
             .img-cont {
             position: relative;
             }
@@ -432,6 +433,7 @@
                     color: var(--main-blue);
                     font-size: 2em;
                 }
+            */
         </style>
     </head>
     <body>
