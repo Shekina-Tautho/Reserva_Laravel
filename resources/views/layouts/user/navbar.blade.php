@@ -20,8 +20,8 @@
 
         <div class="col-6 d-flex justify-content-center gap-5">
             <a class="tabs {{ request()->is('pages.user.homepage') ? 'active' : '' }}" href="{{ route('UserHomepageRoute') }}">Home</a>
-            <a class="tabs {{ request()->is('pages.user.hotels') ? 'active' : '' }}" href="/hotels">Hotels</a>
-            <a class="tabs {{ request()->is('pages.user.contacts') ? 'active' : '' }}" href="/contacts">Contacts</a>
+            <a class="tabs {{ request()->is('pages.user.hotels') ? 'active' : '' }}" href="{{ route('UserHotelSearchRoute') }}">Hotels</a>
+            <a class="tabs {{ request()->is('pages.user.contacts') ? 'active' : '' }}" href="{{ route('UserContactsRoute') }}">Contacts</a>
         </div>
 
         <div class="col-3 d-flex gap-4 justify-content-end px-5">
