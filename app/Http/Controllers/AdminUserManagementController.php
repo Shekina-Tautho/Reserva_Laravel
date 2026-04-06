@@ -4,23 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserManagementController extends Controller
 {
     /**
-     * Display all users.
+     * Show both users and employees.
      */
     public function index()
     {
         $users = User::all();
-        return view('pages.admin.user_management', compact('users'));
+        $employees = Employee::all();
+
+        return view('pages.admin.user_management', compact('users', 'employees'));
     }
 
     /**
      * Store a new user.
      */
-    public function store(Request $request)
+    public function storeUser(Request $request)
     {
         User::create([
             'first_name' => $request->first_name,
@@ -28,7 +31,6 @@ class AdminUserManagementController extends Controller
             'email'      => $request->email,
             'password'   => Hash::make($request->password),
             'role'       => $request->role,
-            'status'     => $request->status,
         ]);
 
         return back()->with('success', 'User added');
@@ -37,7 +39,7 @@ class AdminUserManagementController extends Controller
     /**
      * Update an existing user.
      */
-    public function update(Request $request, $id)
+    public function updateUser(Request $request, $id)
     {
         $user = User::where('user_id', $id)->firstOrFail();
 
@@ -45,10 +47,8 @@ class AdminUserManagementController extends Controller
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
             'email'      => $request->email,
-            // Only update password if provided
             'password'   => $request->filled('password') ? Hash::make($request->password) : $user->password,
             'role'       => $request->role,
-            'status'     => $request->status,
         ]);
 
         return back()->with('success', 'User updated successfully!');
@@ -57,9 +57,50 @@ class AdminUserManagementController extends Controller
     /**
      * Delete a user.
      */
-    public function destroy($id)
+    public function destroyUser($id)
     {
         User::where('user_id', $id)->delete();
         return back()->with('success', 'User deleted');
+    }
+
+    /**
+     * Store a new employee.
+     */
+    public function storeEmployee(Request $request)
+    {
+        Employee::create([
+            'first_name' => $request->first_name,
+            'last_name'  => $request->last_name,
+            'email'      => $request->email,
+            'role'   => $request->role,
+        ]);
+
+        return back()->with('success', 'Employee added');
+    }
+
+    /**
+     * Update an existing employee.
+     */
+    public function updateEmployee(Request $request, $id)
+    {
+        $employee = Employee::where('employee_id', $id)->firstOrFail();
+
+        $employee->update([
+            'first_name' => $request->first_name,
+            'last_name'  => $request->last_name,
+            'email'      => $request->email,
+            'role'   => $request->role,
+        ]);
+
+        return back()->with('success', 'Employee updated successfully!');
+    }
+
+    /**
+     * Delete an employee.
+     */
+    public function destroyEmployee($id)
+    {
+        Employee::where('employee_id', $id)->delete();
+        return back()->with('success', 'Employee deleted');
     }
 }
