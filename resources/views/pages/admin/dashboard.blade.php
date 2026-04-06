@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('Assets/admin_dashboard.css') }}">
 </head>
 <body>
-    @include('layouts.admin.navbar')
+    @include('layouts.admin.navbar') <!-- or paste sidebar markup directly -->
 
     <div class="main-content">
         <!-- Topbar -->

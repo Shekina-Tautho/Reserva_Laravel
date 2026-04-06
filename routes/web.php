@@ -33,7 +33,14 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function() {
 
 Route::get('/AdminDashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/AdminBookings', [AdminBookingsController::class, 'index']);
-Route::get('/AdminUserManagement', [AdminUserManagementController::class, 'index']);
+Route::get('/AdminUserManagement', [AdminUserManagementController::class, 'index'])
+    ->name('admin.user_management');
+
+Route::post('/users/store', [AdminUserManagementController::class, 'store'])
+    ->name('users.store');
+
+Route::delete('/users/{id}', [AdminUserManagementController::class, 'destroy'])
+    ->name('users.delete');
 
 #User Pages
 Route::get('/UserHomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
