@@ -32,7 +32,7 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function() {
 #Admin Pages
 
 Route::get('/AdminDashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
-Route::get('/AdminBookings', [AdminBookingsController::class, 'index']);
+Route::get('/AdminBookings', [AdminBookingsController::class, 'index'])->name('admin.booking');
 Route::get('/AdminUserManagement', [AdminUserManagementController::class, 'index'])->name('admin.user_management');
 #User, admin side
 Route::post('/users/store', [AdminUserManagementController::class, 'store'])->name('users.store');
