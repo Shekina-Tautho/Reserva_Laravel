@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('overview');
             $table->string('address');
+            $table->boolean('is_recommended')->default(false);
             $table->string('image_path')->nullable();
             $table->timestamps();
         });
