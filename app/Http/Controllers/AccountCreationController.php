@@ -17,7 +17,7 @@ class AccountCreationController extends Controller
             'password' => 'required',
             'first_name' => 'required|max:255|string',
             'last_name' => 'required|max:255|string',
-            'phone_no' => 'regex:/^093\d{9}$/|required|max:255|string'
+            'phone_no' => ['required', 'string', 'regex:/^093\d{9}$/']
         ]);        
 
         User::create($user);

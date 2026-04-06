@@ -16,7 +16,7 @@
         <input type="password" name="password" id="password" placeholder="Password">
         <input type="text" name="first_name" id="first_name" placeholder="First Name">
         <input type="text" name="last_name" id="last_name" placeholder="Last Name">        
-        <input type="text" name="phone_no" id="phone_no" placeholder="Phone Number" pattern="^09[0-9]{9}$">        
+        <input type="text" name="phone_no" id="phone_no" placeholder="Phone Number" pattern="^093[0-9]{9}$">        
         <button type="submit">Register</button>
     </form>
 
