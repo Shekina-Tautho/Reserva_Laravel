@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AccountCreationController;
@@ -33,3 +34,8 @@ Route::get('/UserPaymentVerification', [UserPaymentVerificationController::class
 Route::get('/UserReservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
 Route::get('/UserAccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');
 Route::get('/UserContacts', [UserContactsController::class, 'index'])->name('UserContactsRoute');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/'); // or wherever you want to send users after logout
+})->name('logout');
