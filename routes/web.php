@@ -39,6 +39,9 @@ Route::get('/AdminUserManagement', [AdminUserManagementController::class, 'index
 Route::post('/users/store', [AdminUserManagementController::class, 'store'])
     ->name('users.store');
 
+Route::put('/users/{id}', [AdminUserManagementController::class, 'update'])
+    ->name('users.update');
+
 Route::delete('/users/{id}', [AdminUserManagementController::class, 'destroy'])
     ->name('users.delete');
 

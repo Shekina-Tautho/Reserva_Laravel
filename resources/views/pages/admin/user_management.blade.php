@@ -20,7 +20,6 @@
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
-            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -33,18 +32,19 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->role }}</td>
             <td>
-                <span class="badge {{ $user->status == 'Active' ? 'bg-success' : 'bg-danger' }}">
-                    {{ $user->status }}
-                </span>
-            </td>
-            <td>
+                <!-- EDIT -->
+                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal{{ $user->user_id }}">
+                    Edit
+                </button>
+
                 <!-- DELETE -->
-                <form action="{{ route('users.delete', $user->user_id) }}" method="POST">
+                <form action="{{ route('users.delete', $user->user_id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm">Delete</button>
                 </form>
             </td>
+
         </tr>
         @empty
         <tr>
@@ -74,11 +74,6 @@
                     <option>User</option>
                     <option>Admin</option>
                 </select>
-
-                <select name="status" class="form-control">
-                    <option>Active</option>
-                    <option>Inactive</option>
-                </select>
             </div>
 
             <div class="modal-footer">
@@ -87,5 +82,36 @@
         </form>
     </div>
 </div>
+
+@foreach($users as $user)
+<div class="modal fade" id="editModal{{ $user->user_id }}">
+    <div class="modal-dialog">
+        <form method="POST" action="{{ route('users.update', $user->user_id) }}" class="modal-content">
+            @csrf
+            @method('PUT')
+
+            <div class="modal-header">
+                <h5>Edit User</h5>
+            </div>
+
+            <div class="modal-body">
+                <input name="first_name" class="form-control mb-2" value="{{ $user->first_name }}" required>
+                <input name="last_name" class="form-control mb-2" value="{{ $user->last_name }}" required>
+                <input name="email" type="email" class="form-control mb-2" value="{{ $user->email }}" required>
+
+                <select name="role" class="form-control mb-2">
+                    <option {{ $user->role == 'User' ? 'selected' : '' }}>User</option>
+                    <option {{ $user->role == 'Admin' ? 'selected' : '' }}>Admin</option>
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+@endforeach
+
 
 @endsection
