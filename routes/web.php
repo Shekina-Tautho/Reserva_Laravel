@@ -16,17 +16,27 @@ use App\Http\Controllers\UserReservationsController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\UserContactsController;
 
-#Login and Create Account
-Route::get('/', [LoginController::class, 'index']);
-Route::get('/AccountCreation', [AccountCreationController::class, 'index']);
-
+// routes as /route-name (small letters, snakecase)
+# Login and Create Account  
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'authenticate'])->name('login.post');
+Route::get('/register', [AccountCreationController::class, 'index'])->name('register');
+Route::post('/register', [AccountCreationController::class, 'store'])->name('register.post');
+/* /admin/dashboard, middleware = check if auth is valid and role is admin
+Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function() {
+    Route::get('/dashboard', [AdminDashboardController::class, 'index']);
+    Route::get('/booking', [AdminBookingsController::class, 'index']);
+    Route::get('/user-management', [AdminUserManagementController::class, 'index']);
+})
+*/
 #Admin Pages
-Route::get('/AdminDashboard', [AdminDashboardController::class, 'index']);
+
+Route::get('/AdminDashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/AdminBookings', [AdminBookingsController::class, 'index']);
 Route::get('/AdminUserManagement', [AdminUserManagementController::class, 'index']);
 
 #User Pages
-Route::get('/UserHomepage', [UserHomepageController::class, 'index'])->name('UserHomepageRoute');
+Route::get('/UserHomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
 Route::get('/UserHotelSearch', [UserHotelSearchController::class, 'index'])->name('UserHotelSearchRoute');
 Route::get('/UserBooking', [UserBookingController::class, 'index'])->name('UserBookingRoute');
 Route::get('/UserPaymentDetails', [UserPaymentDetailsController::class, 'index'])->name('UserPaymentDetailsRoute');
