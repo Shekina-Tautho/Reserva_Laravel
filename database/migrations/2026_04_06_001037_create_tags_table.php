@@ -12,7 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->id();
+            //FK (hotelID)
+            $table->foreignId('hotel_id')
+                ->constrained('hotel', 'hotel_id')
+                ->onDelete('cascade');
+            
+            $table->boolean('is_smoking');
+            $table->boolean('is_nonsmoking');
+            $table->boolean('is_petfriendly');
+            $table->boolean('has_restaurant');
+            $table->boolean('has_swimmingpool');
+            $table->boolean('has_freewifi');
+            $table->boolean('has_freebreakfast');
+            $table->boolean('has_privatebalcony');
+
             $table->timestamps();
         });
     }
