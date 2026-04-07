@@ -25,6 +25,7 @@
 <!-- Bookings Table -->
 <div class="tb-bookings-container reserva-shadow rounded-4 overflow-hidden">
     <table class="table align-middle table-hover mb-0 user-table">
+
         <thead class="table-light">
             <tr>
                 <th scope="col" class="ps-3">ID</th>
@@ -36,6 +37,7 @@
                 <th scope="col"></th>
             </tr>
         </thead>
+
         <tbody>
             @forelse($bookings as $booking)
             <tr>
@@ -49,12 +51,15 @@
                         {{ $booking->status }}
                     </span>
                 </td>
+
                 <td class="text-center">
                     <div class="action-icons d-flex gap-2 justify-content-center">
+
                         <!-- EDIT -->
                         <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editBookingModal{{ $booking->booking_id }}">
                             <i class="bi bi-pencil"></i>
                         </button>
+
                         <!-- DELETE -->
                         <form action="{{ route('bookings.delete', $booking->booking_id) }}" method="POST" class="d-inline">
                             @csrf
@@ -64,6 +69,7 @@
                     </div>
                 </td>
             </tr>
+
             @empty
             <tr><td colspan="7" class="text-center">No bookings found</td></tr>
             @endforelse
@@ -74,7 +80,7 @@
 <!-- ADD BOOKING MODAL -->
 <div class="modal fade" id="addBookingModal">
     <div class="modal-dialog">
-        <form method="POST" action="{{ route('bookings.store') }}" class="modal-content">
+        <form method="POST" action="{{ route('bookings.store') }}" enctype="multipart/form-data" class="modal-content">
             @csrf
             <div class="modal-header"><h5>Add Booking</h5></div>
             <div class="modal-body">
@@ -84,39 +90,44 @@
                         <option value="{{ $user->user_id }}">{{ $user->first_name }} {{ $user->last_name }}</option>
                     @endforeach
                 </select>
+
                 <select name="hotel_id" class="form-control mb-2" required>
                     <option value="">Select Hotel</option>
                     @foreach($hotels as $hotel)
                         <option value="{{ $hotel->hotel_id }}">{{ $hotel->name }}</option>
                     @endforeach
                 </select>
+
                 <select name="room_id" class="form-control mb-2" required>
                     <option value="">Select Room</option>
                     @foreach($rooms as $room)
-                        <option value="{{ $room->room_id }}">{{ $room->room_number }}</option>
+                        <option value="{{ $room->room_id }}">{{ $room->room_type }}</option>
                     @endforeach
                 </select>
+
                 <select name="employee_id" class="form-control mb-2" required>
                     <option value="">Assign Employee</option>
                     @foreach($employees as $employee)
                         <option value="{{ $employee->employee_id }}">{{ $employee->first_name }} {{ $employee->last_name }}</option>
                     @endforeach
                 </select>
-                <form method="POST" action="{{ route('bookings.store') }}" enctype="multipart/form-data" class="modal-content">
-                    @csrf
-                    <!-- other fields -->
-                    <input type="date" name="check_in_date" class="form-control mb-2" required>
-                    <input type="date" name="check_out_date" class="form-control mb-2" required>
-                    <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
-                    <select name="status" class="form-control mb-2">
-                        <option>Pending</option>
-                        <option>Confirmed</option>
-                        <option>Cancelled</option>
-                    </select>
-                    <div class="modal-footer d-flex justify-content-end">
-                        <button class="btn btn-primary">Save</button>
-                    </div>
-                </form>
+
+                <!-- other fields -->
+                <input type="date" name="check_in_date" class="form-control mb-2" required>
+                <input type="date" name="check_out_date" class="form-control mb-2" required>
+
+                <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
+
+                <select name="status" class="form-control mb-2">
+                    <option>Pending</option>
+                    <option>Confirmed</option>
+                    <option>Cancelled</option>
+                </select>
+
+            </div>
+
+            <div class="modal-footer d-flex justify-content-end">
+                    <button class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
@@ -126,7 +137,7 @@
 @foreach($bookings as $booking)
 <div class="modal fade" id="editBookingModal{{ $booking->booking_id }}">
     <div class="modal-dialog">
-        <form method="POST" action="{{ route('bookings.update', $booking->booking_id) }}" class="modal-content">
+        <form method="POST" action="{{ route('bookings.update', $booking->booking_id) }}" enctype="multipart/form-data" class="modal-content">
             @csrf
             @method('PUT')
             <div class="modal-header"><h5>Edit Booking</h5></div>
@@ -138,6 +149,7 @@
                         </option>
                     @endforeach
                 </select>
+                
                 <select name="hotel_id" class="form-control mb-2" required>
                     @foreach($hotels as $hotel)
                         <option value="{{ $hotel->hotel_id }}" {{ $booking->hotel_id == $hotel->hotel_id ? 'selected' : '' }}>
@@ -145,13 +157,15 @@
                         </option>
                     @endforeach
                 </select>
+
                 <select name="room_id" class="form-control mb-2" required>
                     @foreach($rooms as $room)
                         <option value="{{ $room->room_id }}" {{ $booking->room_id == $room->room_id ? 'selected' : '' }}>
-                            {{ $room->room_number }}
+                            {{ $room->room_type }}
                         </option>
                     @endforeach
                 </select>
+
                 <select name="employee_id" class="form-control mb-2" required>
                     @foreach($employees as $employee)
                         <option value="{{ $employee->employee_id }}" {{ $booking->employee_id == $employee->employee_id ? 'selected' : '' }}>
@@ -159,21 +173,22 @@
                         </option>
                     @endforeach
                 </select>
-                <form method="POST" action="{{ route('bookings.store') }}" enctype="multipart/form-data" class="modal-content">
-                    @csrf
-                    <!-- other fields -->
-                    <input type="date" name="check_in_date" class="form-control mb-2" required>
-                    <input type="date" name="check_out_date" class="form-control mb-2" required>
-                    <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
-                    <select name="status" class="form-control mb-2">
-                        <option>Pending</option>
-                        <option>Confirmed</option>
-                        <option>Cancelled</option>
-                    </select>
-                    <div class="modal-footer d-flex justify-content-end">
-                        <button class="btn btn-primary">Update</button>
-                    </div>
-                </form>
+
+                <!-- other fields -->
+                <input type="date" name="check_in_date" class="form-control mb-2" required>
+                <input type="date" name="check_out_date" class="form-control mb-2" required>
+
+                <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
+
+                <select name="status" class="form-control mb-2">
+                    <option>Pending</option>
+                    <option>Confirmed</option>
+                    <option>Cancelled</option>
+                </select>
+
+                <div class="modal-footer d-flex justify-content-end">
+                    <button class="btn btn-primary">Update</button>
+                </div>
             </div>
         </form>
     </div>
