@@ -17,13 +17,18 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($creds)) {
+        if (Auth::guard('web')->attempt($creds)) {
             $request->session()->regenerate();
-            return redirect()->route(Auth::user()->role == 'admin' ? 'admin.dashboard' : 'user.homepage');
+            return redirect()->route('user.homepage');
+        }
+
+        if (Auth::guard('employee')->attempt($creds)) {
+            $request->session()->regenerate();
+            return redirect()->route('admin.dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'Invalid Email Credentials'
+            'email' => 'Invalid credentials'
         ])->onlyInput('email');
     }
 }

@@ -23,8 +23,8 @@
             </div>
 
             <nav>
-                <a href="{{ url('/AdminDashboard') }}">Dashboard</a>
-                <a href="{{ url('/AdminBookings') }}">Bookings</a>
+                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                <a href="{{ route('admin.booking') }}">Bookings</a>
                 <a href="{{ route('admin.user_management') }}">User Management</a>
             </nav>
         </div>

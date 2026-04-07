@@ -42,7 +42,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        //for log in auth
+        'employee' => [
+            'driver' => 'session',
+            'provider' => 'employees',
+        ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -61,16 +68,30 @@ return [
     |
     */
 
+    /* original
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', User::class),
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'users' => [
+             'driver' => 'database',
+             'table' => 'users',
+        ],
+    ],*/
+
+    //for log in auth
+    'providers' => [
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'employees' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Employee::class,
+        ],
     ],
 
     /*
