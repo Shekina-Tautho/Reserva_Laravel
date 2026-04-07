@@ -47,8 +47,23 @@
                         chosen just for you by CC Vacations.
                     </span>
 
-                    <div class="col-12 cards-container d-flex flex-column align-items-center py-5 mt-3">
-                        <p>No CC's Picks available at the moment.</p>
+                    <div class="col-12 cards-container d-flex flex-column align-items-center py-5">
+                        @if (DB::table('hotel')->where('is_recommended', 1)->exists())
+                            @foreach ($hotels as $hotel)
+                                @if($hotel->is_recommended)
+                                    <div class="card col-12 mb-3">
+                                        <div class="card-body">
+                                            <h2 class="card-title">{{$hotel->name}}</h2>
+                                            <p class="card-text">{{$hotel->overview}}</p>
+                                            <p class="card-text">{{$hotel->address}}</p>
+                                            <a href="#" class="viewBtn py-2 px-4 text-decoration-none mt-3 float-end">View</a>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        @else
+                            <p>No CC's Picks available at the moment.</p>
+                        @endif
                     </div>
                 </div>
             </div>
