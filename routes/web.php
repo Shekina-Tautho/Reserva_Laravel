@@ -29,11 +29,15 @@ Route::prefix('/admin')->middleware(['auth', 'admin'])->group(function() {
     Route::get('/user-management', [AdminUserManagementController::class, 'index']);
 })
 */
-#Admin Pages
 
+#Admin Pages
 Route::get('/AdminDashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/AdminBookings', [AdminBookingsController::class, 'index'])->name('admin.booking');
 Route::get('/AdminUserManagement', [AdminUserManagementController::class, 'index'])->name('admin.user_management');
+# Bookings, admin side
+Route::post('/bookings/store', [AdminBookingsController::class, 'store'])->name('bookings.store');
+Route::put('/bookings/{id}', [AdminBookingsController::class, 'update'])->name('bookings.update');
+Route::delete('/bookings/{id}', [AdminBookingsController::class, 'destroy'])->name('bookings.delete');
 #User, admin side
 Route::post('/users/store', [AdminUserManagementController::class, 'store'])->name('users.store');
 Route::put('/users/{id}', [AdminUserManagementController::class, 'update'])->name('users.update');
