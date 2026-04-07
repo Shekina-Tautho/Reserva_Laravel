@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\HotelsModel;
+use App\Models\Hotel;
 
 class UserHotelSearchController extends Controller
 {
     public function index() 
     {
-        $hotels = HotelsModel::all();
+        $hotels = Hotel::all();
         return view('pages.user.hotels', compact('hotels'));
     }
 }
