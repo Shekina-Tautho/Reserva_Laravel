@@ -100,9 +100,20 @@
             </div>
             <!-- Hotels -->
             <div class="hotels-section py-4">
-                <?php
-                    echo "<p class='text-muted'>No hotels found.</p>";
-                ?>
+                @if (DB::table('hotel')->exists())
+                    @foreach ($hotels as $hotel)
+                        <div class="card col-9 mb-3">
+                            <div class="card-body">
+                                <h2 class="card-title">{{$hotel->name}}</h2>
+                                <p class="card-text">{{$hotel->overview}}</p>
+                                <p class="card-text">{{$hotel->address}}</p>
+                                <a href="#" class="viewBtn py-2 px-4 text-decoration-none mt-3 float-end">View</a>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p class='text-muted'>No hotels found.</p>
+                @endif
             </div>
         </div>
     </div>
