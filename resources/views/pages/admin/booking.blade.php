@@ -55,17 +55,20 @@
                 <td class="text-center">
                     <div class="action-icons d-flex gap-2 justify-content-center">
 
+                        <!-- PREVIEW -->
+                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                            <i class="bi bi-eye"></i>
+                        </button>
+
                         <!-- EDIT -->
                         <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editBookingModal{{ $booking->booking_id }}">
                             <i class="bi bi-pencil"></i>
                         </button>
 
                         <!-- DELETE -->
-                        <form action="{{ route('bookings.delete', $booking->booking_id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
-                        </form>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ $booking->booking_id }}">
+                            <i class="bi bi-trash"></i>
+                        </button>
                     </div>
                 </td>
             </tr>
@@ -133,6 +136,50 @@
     </div>
 </div>
 
+<!-- PREVIEW BOOKING MODALS -->
+@foreach($bookings as $booking)
+<div class="modal fade" id="previewBookingModal{{ $booking->booking_id }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Booking Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Left column: Booking details -->
+                    <div class="col-md-6">
+                        <p><strong>Guest:</strong> {{ $booking->user->first_name }} {{ $booking->user->last_name }}</p>
+                        <p><strong>Hotel:</strong> {{ $booking->hotel->name }}</p>
+                        <p><strong>Room:</strong> {{ $booking->room->room_type }}</p>
+                        <p><strong>Employee in Charge:</strong> {{ $booking->employee->first_name }} {{ $booking->employee->last_name }}</p>
+                        <p><strong>Check-In:</strong> {{ $booking->check_in_date }}</p>
+                        <p><strong>Check-Out:</strong> {{ $booking->check_out_date }}</p>
+                        <p><strong>Status:</strong> 
+                            <span class="badge {{ $booking->status == 'Confirmed' ? 'bg-success' : ($booking->status == 'Cancelled' ? 'bg-danger' : 'bg-warning') }}">
+                                {{ $booking->status }}
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- Right column: Proof image -->
+                    <div class="col-md-6 text-center">
+                        @if($booking->proof_image_path)
+                            <img src="{{ asset('storage/' . $booking->proof_image_path) }}" alt="Proof Image" class="img-fluid rounded shadow">
+                        @else
+                            <p class="text-muted">No proof image uploaded</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
 <!-- EDIT BOOKING MODALS -->
 @foreach($bookings as $booking)
 <div class="modal fade" id="editBookingModal{{ $booking->booking_id }}">
@@ -191,6 +238,31 @@
                 </div>
             </div>
         </form>
+    </div>
+</div>
+@endforeach
+
+<!-- DELETE CONFIRMATION MODALS -->
+@foreach($bookings as $booking)
+<div class="modal fade" id="deleteBookingModal{{ $booking->booking_id }}" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete booking <strong>#{{ $booking->booking_id }}</strong>?
+            </div>
+            <div class="modal-footer">
+                <form action="{{ route('bookings.delete', $booking->booking_id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
     </div>
 </div>
 @endforeach

@@ -13,7 +13,7 @@ class Room extends Model
     ];
 
     // Relationships
-    public function user() {
+    public function hotel() {
         return $this->belongsTo(Hotel::class, 'hotel_id', 'hotel_id');
     }
 }
