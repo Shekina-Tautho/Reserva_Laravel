@@ -1,0 +1,33 @@
+.userName {
+    color: #969696;
+}
+
+:root {
+    --main-blue: #0057AB;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.signup-btn {
+     color: white;
+     background-color: var(--main-blue);
+     border-radius: 30px;
+     border: none;
+     font-size: .9em;
+}
+
+.tabs {
+    font-size: 1.05em;
+    color: black;
+}
+
+.login-btn {
+    color: var(--main-blue);
+    font-size: 1.05em;
+}

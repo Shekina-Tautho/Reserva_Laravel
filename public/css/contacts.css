@@ -1,0 +1,20 @@
+:root {
+    --main-blue: #0057AB;
+}
+
+.blue {
+    color: var(--main-blue);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.xl {
+    font-size: 2em;
+}
+
+i {
+    color: var(--main-blue);
+    font-size: 2em;
+}

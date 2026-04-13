@@ -1,0 +1,72 @@
+:root {
+    --main-blue: #0057AB;
+}
+
+.name-container {
+    background-color: var(--main-blue);
+    border-radius: 30px;
+    height: 20vh;
+} 
+
+.JaneDoe {
+    color: white;
+    font-size: 1.2em;
+}
+
+.boldText {
+    font-weight: 600;
+}
+
+.large {
+    font-size: 1.2em;
+}
+
+.box {
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 
+                0 6px 20px rgba(0, 0, 0, 0.19);
+    padding: 1.5rem 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.delBox {
+    padding: 1rem 0;
+}
+
+.editButton {
+    color: var(--main-blue);
+    border: none;
+    background-color: white;
+}
+
+.gray {
+    color: #969696;
+}
+
+.blue {
+    color: var(--main-blue);
+}
+
+
+.cancel-link {
+    color: var(--main-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cancel-link:hover {
+    text-decoration: underline;
+}
+
+.save-btn {
+    background-color: var(--main-blue);
+    border: none;
+}
+
+.save-btn:hover {
+    opacity: 0.9;
+}
+
+

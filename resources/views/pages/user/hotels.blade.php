@@ -107,7 +107,7 @@
                                 <h2 class="card-title">{{$hotel->name}}</h2>
                                 <p class="card-text">{{$hotel->overview}}</p>
                                 <p class="card-text">{{$hotel->address}}</p>
-                                <a href="#" class="viewBtn py-2 px-4 text-decoration-none mt-3 float-end">View</a>
+                                <a href="{{ url('hotel', $hotel->hotel_id) }}" class="viewBtn py-2 px-4 text-decoration-none mt-3 float-end">View</a>
                             </div>
                         </div>
                     @endforeach

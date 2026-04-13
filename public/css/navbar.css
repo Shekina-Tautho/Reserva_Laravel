@@ -1,0 +1,75 @@
+:root {
+    --main-blue: #0057AB;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.tabs {
+    font-size: 1.05em;
+    color: black;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.tabs::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: var(--main-blue);
+    transition: width 0.3s ease;
+}
+
+.tabs:hover {
+    color: var(--main-blue);
+}
+
+.tabs:hover::after {
+    width: 100%;
+}
+
+.tabs.active {
+    color: var(--main-blue);
+}
+
+.tabs.active::after {
+    width: 100%;
+}
+
+.login-btn {
+    color: var(--main-blue);
+    font-size: 1.05em;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    color: #003d7a; 
+    opacity: 1;
+    transform: scale(1.03);
+}
+
+.signup-btn {
+    color: white;
+    background-color: var(--main-blue);
+    border-radius: 30px;
+    border: none;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.signup-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(0, 87, 171, 0.4);
+}

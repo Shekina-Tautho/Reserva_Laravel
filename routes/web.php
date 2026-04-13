@@ -45,14 +45,14 @@ Route::prefix('/admin')->middleware('employee.access')->group(function() {
 
 # User Pages (protected by user guard)
 Route::middleware('auth:web')->group(function() {
-    Route::get('/UserHomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
-    Route::get('/UserHotelSearch', [UserHotelSearchController::class, 'index'])->name('UserHotelSearchRoute');
-    Route::get('/UserBooking', [UserBookingController::class, 'index'])->name('UserBookingRoute');
-    Route::get('/UserPaymentDetails', [UserPaymentDetailsController::class, 'index'])->name('UserPaymentDetailsRoute');
-    Route::get('/UserPaymentVerification', [UserPaymentVerificationController::class, 'index'])->name('UserPaymentVerificationRoute');
-    Route::get('/UserReservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
-    Route::get('/UserAccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');
-    Route::get('/UserContacts', [UserContactsController::class, 'index'])->name('UserContactsRoute');
+    Route::get('/userhomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
+    Route::get('/userhotelsearch', [UserHotelSearchController::class, 'index'])->name('UserHotelSearchRoute');
+    Route::get('/userbooking', [UserBookingController::class, 'index'])->name('UserBookingRoute');
+    Route::get('/userpaymentdetails', [UserPaymentDetailsController::class, 'index'])->name('UserPaymentDetailsRoute');
+    Route::get('/userpaymentverification', [UserPaymentVerificationController::class, 'index'])->name('UserPaymentVerificationRoute');
+    Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
+    Route::get('/useraccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');
+    Route::get('/usercontacts', [UserContactsController::class, 'index'])->name('UserContactsRoute');
 });
 
 # Logout (handles both guards)

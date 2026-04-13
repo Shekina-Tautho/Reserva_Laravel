@@ -21,9 +21,9 @@
         </div>
 
         <div class="col-6 d-flex justify-content-center gap-5">
-            <a class="tabs {{ request()->is('UserHomepage') ? 'active' : '' }}" href="{{ route('user.homepage') }}">Home</a>
-            <a class="tabs {{ request()->is('UserHotelSearch') ? 'active' : '' }}" href="{{ route('UserHotelSearchRoute') }}">Hotels</a>
-            <a class="tabs {{ request()->is('UserContacts') ? 'active' : '' }}" href="{{ route('UserContactsRoute') }}">Contacts</a>
+            <a class="tabs {{ request()->is('userhomepage') ? 'active' : '' }}" href="{{ route('user.homepage') }}">Home</a>
+            <a class="tabs {{ request()->is('userhotelsearch') ? 'active' : '' }}" href="{{ route('UserHotelSearchRoute') }}">Hotels</a>
+            <a class="tabs {{ request()->is('usercontacts') ? 'active' : '' }}" href="{{ route('UserContactsRoute') }}">Contacts</a>
         </div>
 
         <div class="col-3 d-flex gap-4 justify-content-end px-5">

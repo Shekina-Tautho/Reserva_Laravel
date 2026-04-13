@@ -1,0 +1,105 @@
+html, body {
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #0057ab;
+}
+
+.main-div {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0057ab;
+}
+
+.bg-section-img {
+  max-width: 360px;
+  height: auto;
+}
+
+.bg-section-heading {
+  color: white;
+  max-width: 300px;
+  font-weight: 400;
+  line-height: 50px;
+}
+
+.login-section {
+  background-color: white;
+  border-radius: 40px 0px 0px 40px;
+}
+
+.login-heading {
+  font-size: 50px;
+  color: #0057ab;
+  font-weight: bold;
+  max-width:300px;
+}
+
+.form-login {
+  max-width: 380px;
+}
+
+#login-button {
+  border-radius: 100px;
+  border:none;
+  background-color: #0057ab;
+  color: #fff;
+  font-weight: bold;
+}
+
+.login-input {
+  border-radius: 100px;
+  color: #000;
+  border: solid;
+  border-width: 1px;
+  border-color: #9c9c9c;
+  font-size: 16px;
+}
+
+.login-password {
+  margin-top: 24px
+}
+
+.register-p {
+  margin-top: 50px;
+  font-size: 15px;
+  color: #9c9c9c;
+}
+
+.login-socials-icon {
+  border: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  border-color: #9c9c9c;
+}
+
+input::placeholder {
+  font-size: 14px;
+  color: #9a9a9a;
+}
+
+input:focus {
+  border-color: #0057ab;
+  outline: none;
+}
+
+.bg-overlay {
+  position: absolute;
+  top: -35%;
+  left: -12%;
+  width: 80%;
+  height: 180%;
+  overflow: hidden;
+  background-image: url("../Assets/dotted-arrow-bg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; /* or cover */
+  pointer-events: none;
+}
+
+.login-socials-icon {
+  background-color: white;
+}
