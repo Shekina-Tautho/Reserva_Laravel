@@ -29,6 +29,7 @@ class AdminUserManagementController extends Controller
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
             'email'      => $request->email,
+            'phone_no'   => $request->phone_no,
             'password'   => Hash::make($request->password),
             'role'       => $request->role,
         ]);
@@ -47,6 +48,7 @@ class AdminUserManagementController extends Controller
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
             'email'      => $request->email,
+            'phone_no'   => $request->phone_no,
             'password'   => $request->filled('password') ? Hash::make($request->password) : $user->password,
             'role'       => $request->role,
         ]);
@@ -72,7 +74,7 @@ class AdminUserManagementController extends Controller
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
             'email'      => $request->email,
-            'role'   => $request->role,
+            'role'       => $request->role,
         ]);
 
         return back()->with('success', 'Employee added');
@@ -89,7 +91,7 @@ class AdminUserManagementController extends Controller
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
             'email'      => $request->email,
-            'role'   => $request->role,
+            'role'       => $request->role,
         ]);
 
         return back()->with('success', 'Employee updated successfully!');

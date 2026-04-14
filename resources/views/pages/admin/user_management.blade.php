@@ -22,7 +22,7 @@
             <th>User ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Role</th>
+            <th>Phone No.</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -32,7 +32,7 @@
             <td>{{ $user->user_id }}</td>
             <td>{{ $user->first_name }} {{ $user->last_name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->role }}</td>
+            <td>{{ $user->phone_no }}</td>
             <td>
                 <!-- EDIT -->
                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $user->user_id }}">
@@ -62,11 +62,8 @@
                 <input name="first_name" class="form-control mb-2" placeholder="First Name" required>
                 <input name="last_name" class="form-control mb-2" placeholder="Last Name" required>
                 <input name="email" type="email" class="form-control mb-2" placeholder="Email" required>
+                <input name="phone_no" type="phone_no" class="form-control mb-2" placeholder="Phone No." required>
                 <input name="password" type="password" class="form-control mb-2" placeholder="Password" required>
-                <select name="role" class="form-control mb-2">
-                    <option>User</option>
-                    <option>Admin</option>
-                </select>
             </div>
             <div class="modal-footer"><button class="btn btn-primary">Save</button></div>
         </form>
@@ -84,10 +81,7 @@
                 <input name="first_name" class="form-control mb-2" value="{{ $user->first_name }}" required>
                 <input name="last_name" class="form-control mb-2" value="{{ $user->last_name }}" required>
                 <input name="email" type="email" class="form-control mb-2" value="{{ $user->email }}" required>
-                <select name="role" class="form-control mb-2">
-                    <option {{ $user->role == 'User' ? 'selected' : '' }}>User</option>
-                    <option {{ $user->role == 'Admin' ? 'selected' : '' }}>Admin</option>
-                </select>
+                <input name="phone_no" type="phone_no" class="form-control mb-2" value="{{ $user->phone_no }}" required>
             </div>
             <div class="modal-footer"><button class="btn btn-primary">Update</button></div>
         </form>

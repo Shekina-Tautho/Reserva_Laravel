@@ -31,17 +31,21 @@ Route::post('/employee/login', [LoginController::class, 'authenticateEmployee'])
 /* /admin/dashboard, middleware = check if auth is valid and role is admin */
 Route::prefix('/admin')->middleware('employee.access')->group(function() {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
     Route::get('/booking', [AdminBookingsController::class, 'index'])->name('admin.booking');
     Route::post('/bookings/store', [AdminBookingsController::class, 'store'])->name('bookings.store');
     Route::put('/bookings/{id}', [AdminBookingsController::class, 'update'])->name('bookings.update');
     Route::delete('/bookings/{id}', [AdminBookingsController::class, 'destroy'])->name('bookings.delete');
-    Route::get('/user-management', [AdminUserManagementController::class, 'index'])->name('admin.user_management');
-    Route::post('/users/store', [AdminUserManagementController::class, 'store'])->name('users.store');
-    Route::put('/users/{id}', [AdminUserManagementController::class, 'update'])->name('users.update');
-    Route::delete('/users/{id}', [AdminUserManagementController::class, 'destroy'])->name('users.delete');
-    Route::post('/employees', [AdminUserManagementController::class, 'storeEmployee'])->name('employees.store');
+
+    Route::get('/users', [AdminUserManagementController::class, 'index'])->name('admin.user_management');
+    Route::post('/users/store', [AdminUserManagementController::class, 'storeUser'])->name('users.store');
+    Route::put('/users/{id}', [AdminUserManagementController::class, 'updateUser'])->name('users.update');
+    Route::delete('/users/{id}', [AdminUserManagementController::class, 'destroyUser'])->name('users.delete');
+
+    Route::post('/employees/store', [AdminUserManagementController::class, 'storeEmployee'])->name('employees.store');
     Route::put('/employees/{id}', [AdminUserManagementController::class, 'updateEmployee'])->name('employees.update');
     Route::delete('/employees/{id}', [AdminUserManagementController::class, 'destroyEmployee'])->name('employees.delete');
+
     Route::get('/hotels', [AdminHotelController::class, 'index'])->name('admin.hotel');
     Route::post('/hotels', [AdminHotelController::class, 'store'])->name('hotels.store');
     Route::put('/hotels/{id}', [AdminHotelController::class, 'update'])->name('hotels.update');
