@@ -57,18 +57,18 @@
                     <div class="action-icons d-flex gap-2 justify-content-center">
 
                         <!-- PREVIEW -->
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
-                            <i class="bi bi-eye"></i>
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                            <img src="{{ asset('/images/previewicon.png') }}" alt="">
                         </button>
 
                         <!-- EDIT -->
-                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editBookingModal{{ $booking->booking_id }}">
-                            <i class="bi bi-pencil"></i>
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#editBookingModal{{ $booking->booking_id }}">
+                            <img src="{{ asset('/images/editicon.png') }}" alt="">
                         </button>
 
                         <!-- DELETE -->
-                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ $booking->booking_id }}">
-                            <i class="bi bi-trash"></i>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteBookingModal{{ $booking->booking_id }}">
+                            <img src="{{ asset('/images/deleteicon.png') }}" alt="">
                         </button>
                     </div>
                 </td>
@@ -144,13 +144,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5>Booking Preview</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <!-- Left column: Booking details -->
                     <div class="col-md-6">
                         <p><strong>Guest:</strong> {{ $booking->user->first_name }} {{ $booking->user->last_name }}</p>
+                        <p><strong>Email:</strong> {{ $booking->user->email }}</p>
+                        <p><strong>Phone No.:</strong> {{ $booking->user->phone_no }}</p>
                         <p><strong>Hotel:</strong> {{ $booking->hotel->name }}</p>
                         <p><strong>Room:</strong> {{ $booking->room->room_type }}</p>
                         <p><strong>Employee in Charge:</strong> {{ $booking->employee->first_name }} {{ $booking->employee->last_name }}</p>
@@ -174,7 +175,7 @@
                 </div>
             </div>
             <div class="modal-footer d-flex justify-content-end">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -188,7 +189,10 @@
         <form method="POST" action="{{ route('bookings.update', $booking->booking_id) }}" enctype="multipart/form-data" class="modal-content">
             @csrf
             @method('PUT')
-            <div class="modal-header"><h5>Edit Booking</h5></div>
+            <div class="modal-header">
+                <h5>Edit Booking</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
             <div class="modal-body">
                 <select name="user_id" class="form-control mb-2" required>
                     @foreach($users as $user)
@@ -223,15 +227,15 @@
                 </select>
 
                 <!-- other fields -->
-                <input type="date" name="check_in_date" class="form-control mb-2" required>
-                <input type="date" name="check_out_date" class="form-control mb-2" required>
+                <input type="date" name="check_in_date" class="form-control mb-2" value="{{ $booking->check_in_date }}" required>
+                <input type="date" name="check_out_date" class="form-control mb-2" value="{{ $booking->check_out_date }}" required>
 
                 <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
 
                 <select name="status" class="form-control mb-2">
-                    <option>Pending</option>
-                    <option>Confirmed</option>
-                    <option>Cancelled</option>
+                    <option {{ $booking->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                    <option {{ $booking->status == 'Confirmed' ? 'selected' : '' }}>Confirmed</option>
+                    <option {{ $booking->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                 </select>
 
                 <div class="modal-footer d-flex justify-content-end">

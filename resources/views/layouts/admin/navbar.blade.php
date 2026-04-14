@@ -32,13 +32,17 @@
                     <img src="{{ asset('images/bookingsicon.png') }}" alt="">
                     Bookings
                 </a>
-                <a href="{{ route('admin.user_management') }}">
-                    <img src="{{ asset('images/customersicon.png') }}" alt="">
-                    Users
-                </a>
                 <a href="{{ route('admin.hotel') }}">
                     <i class="fa-solid fa-hotel"></i>
                     Hotels
+                </a>
+                <a href="">
+                    <i class='fas fa-door-open'></i>
+                    Rooms
+                </a>
+                <a href="{{ route('admin.user_management') }}">
+                    <img src="{{ asset('images/customersicon.png') }}" alt="">
+                    Users
                 </a>
             </nav>
         </div>

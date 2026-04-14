@@ -41,7 +41,6 @@ class BookingStatusChanged extends Notification
             ->greeting('Hello ' . $this->booking->user->first_name)
             ->line('Your booking #' . $this->booking->booking_id . ' has been updated.')
             ->line('New Status: ' . $this->booking->status)
-            ->action('View Booking', url('/userbooking' . $this->booking->booking_id))
             ->line('Thank you for choosing us!');
     }
 

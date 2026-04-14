@@ -44,9 +44,9 @@ class AdminBookingsController extends Controller
         // Validate the incoming request
         $validated = $request->validate([
             'user_id'       => 'required|exists:users,user_id',
-            'hotel_id'      => 'required|exists:hotels,hotel_id',
-            'room_id'       => 'required|exists:rooms,room_id',
-            'employee_id'   => 'required|exists:employees,employee_id',
+            'hotel_id'      => 'required|exists:hotel,hotel_id',
+            'room_id'       => 'required|exists:room,room_id',
+            'employee_id'   => 'required|exists:employee,employee_id',
             'check_in_date' => 'required|date',
             'check_out_date'=> 'required|date|after:check_in_date',
             'status'        => 'required|in:Pending,Confirmed,Cancelled',

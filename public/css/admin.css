@@ -108,6 +108,7 @@ h2.fw-bold {
   transition: background-color 0.2s ease;
 }
 
+/*
 .user-table .action-icons {
   opacity: 0;
   transform: translateY(3px);
@@ -128,6 +129,7 @@ h2.fw-bold {
 .user-table .action-icons i:hover {
   color: #0b5ed7;
 }
+*/
 
 table .action-icons img {
   width: 20px; /* optional: keeps icons uniform */

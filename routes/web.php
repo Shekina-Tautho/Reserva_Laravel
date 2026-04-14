@@ -37,6 +37,7 @@ Route::prefix('/admin')->middleware('employee.access')->group(function() {
     Route::post('/bookings/store', [AdminBookingsController::class, 'store'])->name('bookings.store');
     Route::put('/bookings/{id}', [AdminBookingsController::class, 'update'])->name('bookings.update');
     Route::delete('/bookings/{id}', [AdminBookingsController::class, 'destroy'])->name('bookings.delete');
+    Route::get('/bookings/{id}', [AdminBookingsController::class, 'show'])->name('bookings.show');
 
     Route::get('/users', [AdminUserManagementController::class, 'index'])->name('admin.user_management');
     Route::post('/users/store', [AdminUserManagementController::class, 'storeUser'])->name('users.store');

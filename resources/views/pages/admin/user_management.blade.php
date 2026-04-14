@@ -6,13 +6,14 @@
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/css/admin.css') }}"/>
 
 {{-- ================= USERS ================= --}}
 <h2 class="fw-bold mb-4">Users</h2>
 
 <!-- ADD USER BUTTON -->
 <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">
+    <img src="" alt="">
     Add User
 </button>
 
@@ -23,7 +24,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone No.</th>
-            <th>Actions</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -106,7 +107,7 @@
             <th>Email</th>
             <th>Position</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

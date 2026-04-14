@@ -47,32 +47,23 @@
                     <th scope="col">Guest Name</th>
                     <th scope="col">Hotel</th>
                     <th scope="col">Check-In</th>
+                    <th scope="col">Check-Out</th>
                     <th scope="col">Status</th>
-                    <th scope="col" class="text-center">Actions</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach($recentBookings as $booking)
                     <tr>
-                        <td>{{ $booking->id }}</td>
-                        <td class="ps-3">{{ $booking->guest_name }}</td>
-                        <td>{{ $booking->hotel_name }}</td>
+                        <td>{{ $booking->booking_id }}</td>
+                        <td class="ps-3">{{ $booking->user->first_name }} {{ $booking->user->last_name }}</td>
+                        <td>{{ $booking->hotel->name }}</td>
                         <td>{{ $booking->check_in_date }}</td>
+                        <td>{{ $booking->check_out_date }}</td>
                         <td>
                             <span class="badge bg-{{ $booking->status === 'active' ? 'success' : 'warning' }}">
                                 {{ ucfirst($booking->status) }}
                             </span>
-                        </td>
-                        <td class="text-center">
-                            <div class="d-flex justify-content-center gap-2">
-                                <a href="{{ route('bookings.show', $booking->id) }}"><i class="bi bi-eye text-primary"></i></a>
-                                <a href="{{ route('bookings.edit', $booking->id) }}"><i class="bi bi-pencil text-warning"></i></a>
-                                <form action="{{ route('bookings.delete', $booking->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-link p-0"><i class="bi bi-trash text-danger"></i></button>
-                                </form>
-                            </div>
                         </td>
                     </tr>
                 @endforeach

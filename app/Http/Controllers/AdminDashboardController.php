@@ -16,7 +16,10 @@ class AdminDashboardController extends Controller
         $pendingBookings = BookingModel::where('status', 'pending')->count();
 
         // Recent bookings (latest 5)
-        $recentBookings = BookingModel::latest()->take(5)->get();
+        $recentBookings = BookingModel::with(['user','hotel'])
+            ->latest()
+            ->take(5)
+            ->get();
 
         return view('pages.admin.dashboard', compact(
             'totalBookings',

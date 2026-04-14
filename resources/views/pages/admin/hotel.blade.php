@@ -7,14 +7,14 @@
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
-<link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/css/admin.css') }}"/>
 
 <!-- Page Header -->
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-4">
     <div><h2 class="fw-bold mb-2">Hotels</h2></div>
     <div class="mt-3 mt-md-4 d-flex gap-2 flex-wrap justify-content-md-end">
         <button class="btn btn-primary d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#addHotelModal">
-            <img src="{{ asset('Assets/addicon.png') }}" alt=""> Add Hotel
+            <img src="" alt=""> Add Hotel
         </button>
     </div>
 </div>
@@ -27,7 +27,6 @@
                 <th scope="col" class="ps-3">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Address</th>
-                
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -40,16 +39,16 @@
                 <td class="text-center">
                     <div class="action-icons d-flex gap-2 justify-content-center">
                         <!-- PREVIEW -->
-                        <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#previewHotelModal{{ $hotel->hotel_id }}">
-                            <i class="bi bi-eye"></i>
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#previewHotelModal{{ $hotel->hotel_id }}">
+                            <img src="{{ asset('/images/previewicon.png') }}" alt="">
                         </button>
                         <!-- EDIT -->
-                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editHotelModal{{ $hotel->hotel_id }}">
-                            <i class="bi bi-pencil"></i>
+                        <button class="btn" data-bs-toggle="modal" data-bs-target="#editHotelModal{{ $hotel->hotel_id }}">
+                            <img src="{{ asset('/images/editicon.png') }}" alt="">
                         </button>
                         <!-- DELETE -->
-                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteHotelModal{{ $hotel->hotel_id }}">
-                            <i class="bi bi-trash"></i>
+                        <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteHotelModal{{ $hotel->hotel_id }}">
+                            <img src="{{ asset('/images/deleteicon.png') }}" alt="">
                         </button>
                     </div>
                 </td>
@@ -94,7 +93,7 @@
                 <p><strong>Overview:</strong> {{ $hotel->overview }}</p>
             </div>
             <div class="modal-footer d-flex justify-content-end">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -108,7 +107,10 @@
         <form method="POST" action="{{ route('hotels.update', $hotel->hotel_id) }}" class="modal-content">
             @csrf
             @method('PUT')
-            <div class="modal-header"><h5>Edit Hotel</h5></div>
+            <div class="modal-header">
+                <h5>Edit Hotel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
             <div class="modal-body">
                 <input type="text" name="name" class="form-control mb-2" value="{{ $hotel->name }}" required>
                 <textarea name="overview" class="form-control mb-2">{{ $hotel->overview }}</textarea>
