@@ -5,7 +5,7 @@
 @section('content')
 
 <!--Include Booking CSS File-->
-<link rel="stylesheet" href="{{ asset('/storage/css/booking.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/css/booking.css') }}"/>
 
 <div class="container-fluid main-div">
     <div class="row">
@@ -15,7 +15,7 @@
         <div class="col-12 d-flex align-items-center flex-column">
             <div class="col-10 mt-3">
                 <div class="base-container p-5 mb-5">
-                    <img src="{{ asset('/storage/images/payment verification hotel.jpg') }}" alt="hotel room" class="img-fluid align-self-center mb-5">
+                    <img src="{{ asset('/images/payment verification hotel.jpg') }}" alt="hotel room" class="img-fluid align-self-center mb-5">
                     <p class="bold blue xl pt-2 hotelName mb-0">Hotel A</p>
                     <div class="d-flex mt-2 align-items-center">
                         <i class="bi bi-geo-alt p-0 gray me-1"></i>

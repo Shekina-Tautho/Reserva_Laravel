@@ -5,7 +5,7 @@
 @section('content')
 
 <!--Include Payment Verification CSS File-->
-<link rel="stylesheet" href="{{ asset('/storage/css/paymentVerification.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/css/paymentVerification.css') }}"/>
 
 <div class="container-fluid main-div">
     <div class="row">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="base-container d-flex p-5 flex-column">
-                    <img src="{{ asset('/storage/images/payment verification hotel.jpg') }}" alt="hotel room" class="img-fluid align-self-center mb-5">
+                    <img src="{{ asset('/images/payment verification hotel.jpg') }}" alt="hotel room" class="img-fluid align-self-center mb-5">
                     <div class="summary">
                         <span class="blue bold xl">Your Trip Summary</span>
                         <div class="d-flex justify-content-between">

@@ -5,7 +5,7 @@
 @section('content')
 
 <!--Include Payment Details CSS File-->
-<link rel="stylesheet" href="{{ asset('/storage/css/paymentDetails.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/css/paymentDetails.css') }}"/>
 
 <div class="container-fluid main-container">
     <div class="row">

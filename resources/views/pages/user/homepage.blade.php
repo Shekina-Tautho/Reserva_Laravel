@@ -5,7 +5,7 @@
 @section('content')
 
 <!--Include Homepage CSS File-->
-<link rel="stylesheet" href="{{ asset('/storage/css/homepage.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/css/homepage.css') }}"/>
 
 <div class="container-fluid main-div">
     <div class="row">
@@ -16,7 +16,7 @@
         <div class="col-12 mid-div d-flex flex-column align-items-center">
             <div class="col-10 mt-5 position-relative">
                 <div class="img-cont d-flex justify-content-center">
-                    <img src="{{ asset('/storage/images/homepage.png') }}" alt="outdoor hotel" class="img-fluid rounded">
+                    <img src="{{ asset('/images/homepage.png') }}" alt="outdoor hotel" class="img-fluid rounded">
 
                     <form id="searchForm" action="hotels.php" method="GET" class="search-box container shadow-lg rounded-4 bg-white p-4 position-absolute top-100 start-50 translate-middle">
                         <div class="row text-center">
