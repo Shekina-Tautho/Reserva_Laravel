@@ -36,7 +36,7 @@
                     <i class="fa-solid fa-hotel"></i>
                     Hotels
                 </a>
-                <a href="">
+                <a href="{{ route('admin.room') }}">
                     <i class='fas fa-door-open'></i>
                     Rooms
                 </a>

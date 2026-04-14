@@ -9,7 +9,10 @@ class Room extends Model
     protected $table = 'room';          
     protected $primaryKey = 'room_id';
     protected $fillable = [
-        'hotel_id','room_type', 'capacity', 'amenities', 'image_path', // adjust to your actual columns
+        'hotel_id','room_type',
+        'capacity',
+        'amenities',
+        'image_path',
     ];
 
     // Relationships

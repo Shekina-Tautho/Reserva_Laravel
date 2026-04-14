@@ -7,8 +7,9 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AccountCreationController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminBookingsController;
-use App\Http\Controllers\AdminUserManagementController;
 use App\Http\Controllers\AdminHotelController;
+use App\Http\Controllers\AdminRoomController;
+use App\Http\Controllers\AdminUserManagementController;
 use App\Http\Controllers\UserHomepageController;
 use App\Http\Controllers\UserHotelSearchController;
 use App\Http\Controllers\UserHotelsController;
@@ -39,6 +40,16 @@ Route::prefix('/admin')->middleware('employee.access')->group(function() {
     Route::delete('/bookings/{id}', [AdminBookingsController::class, 'destroy'])->name('bookings.delete');
     Route::get('/bookings/{id}', [AdminBookingsController::class, 'show'])->name('bookings.show');
 
+    Route::get('/hotels', [AdminHotelController::class, 'index'])->name('admin.hotel');
+    Route::post('/hotels', [AdminHotelController::class, 'store'])->name('hotels.store');
+    Route::put('/hotels/{id}', [AdminHotelController::class, 'update'])->name('hotels.update');
+    Route::delete('/hotels/{id}', [AdminHotelController::class, 'destroy'])->name('hotels.delete');
+
+    Route::get('/rooms', [AdminRoomController::class, 'index'])->name('admin.room');
+    Route::post('/rooms', [AdminRoomController::class, 'store'])->name('rooms.store');
+    Route::put('/rooms/{id}', [AdminRoomController::class, 'update'])->name('rooms.update');
+    Route::delete('/rooms/{id}', [AdminRoomController::class, 'destroy'])->name('rooms.delete');
+
     Route::get('/users', [AdminUserManagementController::class, 'index'])->name('admin.user_management');
     Route::post('/users/store', [AdminUserManagementController::class, 'storeUser'])->name('users.store');
     Route::put('/users/{id}', [AdminUserManagementController::class, 'updateUser'])->name('users.update');
@@ -47,11 +58,6 @@ Route::prefix('/admin')->middleware('employee.access')->group(function() {
     Route::post('/employees/store', [AdminUserManagementController::class, 'storeEmployee'])->name('employees.store');
     Route::put('/employees/{id}', [AdminUserManagementController::class, 'updateEmployee'])->name('employees.update');
     Route::delete('/employees/{id}', [AdminUserManagementController::class, 'destroyEmployee'])->name('employees.delete');
-
-    Route::get('/hotels', [AdminHotelController::class, 'index'])->name('admin.hotel');
-    Route::post('/hotels', [AdminHotelController::class, 'store'])->name('hotels.store');
-    Route::put('/hotels/{id}', [AdminHotelController::class, 'update'])->name('hotels.update');
-    Route::delete('/hotels/{id}', [AdminHotelController::class, 'destroy'])->name('hotels.delete');
 });
 
 # User Pages (protected by user guard)
