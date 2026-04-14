@@ -2,6 +2,24 @@
 
 @section('title', 'Payment Verification')
 
+<script>
+    function computeNights() {
+        const checkInDate = {{ session('check_in_date') }};
+        const checkOutDate = {{ session('check_out_date') }};
+        let checkIn = new Date(checkInDate);
+        let checkOut = new Date(checkOutDate);
+        let timeDifference = checkOut - checkIn;
+        let numberOfNights = timeDifference / (1000 * 3600 * 24);
+        return numberOfNights;
+    }
+
+    function computeTotal(numberOfNights) {
+        const roomRate = {{ session('room_rates') }};
+        let totalAmount = numberOfNights * roomRate;
+        return totalAmount;
+    }
+</script>
+
 @section('content')
 
 <!--Include Payment Verification CSS File-->
@@ -35,13 +53,10 @@
                     <div class="summary">
                         <span class="blue bold xl">Your Trip Summary</span>
                         <div class="d-flex justify-content-between">
-                            <span>Check In</span><span>Thu, Oct 9</span>
+                            <span>Check In</span><span>{{ session('check_in_date') }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <span>Check Out</span><span>Sat, Oct 11</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Guests</span><span>2</span>
+                            <span>Check Out</span><span>{{ session('check_out_date') }}</span>
                         </div>
                     </div>
 
@@ -52,14 +67,7 @@
                             <span>Number of Nights</span><span>2</span>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <span>Per Night Stay</span><span>₱10,000.00</span>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between">
-                            <span>Subtotal</span><span>₱20,000.00</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span>Tax (12%)</span><span>₱2,400.00</span>
+                            <span>Per Night Stay</span><span>₱{{ session('room_rates') }}</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between bold">

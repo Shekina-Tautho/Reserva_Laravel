@@ -36,6 +36,8 @@ return new class extends Migration
                 
             $table->date('check_in_date');
             $table->date('check_out_date');
+            $table->text('request')->nullable();
+            $table->double('total_amount');
             $table->string('proof_image_path');
             $table->string('status');    
             $table->timestamps();

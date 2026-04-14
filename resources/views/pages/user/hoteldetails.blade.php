@@ -16,7 +16,7 @@
         <div class="col-10 mt-3">
             <div class="base-container p-5 mb-5">
                 <img src="../Assets/payment verification hotel.jpg" alt="hotel room" class="img-fluid align-self-center mb-5">
-                <p class="bold blue xl pt-2 hotelName mb-0">Hotel A</p>
+                <p class="bold blue xl pt-2 hotelName mb-0">{{ $hotels->name }}</p>
                 <div class="d-flex mt-2 align-items-center">
                     <i class="bi bi-geo-alt p-0 gray me-1"></i>
                     <span class="hotel-info">{{ $hotels->address }}</span>
@@ -26,10 +26,38 @@
                     <span class="description">{{ $hotels->overview }}</span>
                 </div>
                 <div class="overview py-2">
-                    <p class="bold large mb-0">Rooms</p>
-                </div>
-                <div class="button-container d-flex justify-content-end">
-                    <button class="bold book" onclick="window.location.href='paymentDetails.php'">Book Now</button>
+                    <p class="bold large mb-1">Rooms</p>
+                    @foreach ($rooms as $room)
+                        <div class="card mb-2">
+                            <div class="row"> 
+                                <div class="col-4"> 
+                                    <img src="" class="card-img-" alt="...">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $room->room_type }}</h5>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-text">{{ $room->capacity }}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="card-text">{{ $room->no_of_beds }}</p>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">{{ $room->amenities }}</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-text">{{ $room->room_rates }} per night</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <a class="btn btn-primary" href="{{ url('paymentdetails', $room->room_id) }}" role="button">Book Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

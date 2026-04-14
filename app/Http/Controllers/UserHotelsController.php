@@ -11,7 +11,7 @@ class UserHotelsController extends Controller
     public function hoteldetails($id) 
     {
         $hotels = Hotel::find($id);
-        $rooms = Room::all();
-        return view('pages.user.hoteldetails', compact('hotels'));
+        $rooms = Room::where('hotel_id', $id)->get();
+        return view('pages.user.hoteldetails', compact('hotels', 'rooms'), );
     }
 }
