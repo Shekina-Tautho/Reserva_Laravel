@@ -41,7 +41,17 @@ class AdminBookingsController extends Controller
     {
         $booking = BookingModel::findOrFail($id);
 
-        $data = $request->all();
+        // Validate the incoming request
+        $validated = $request->validate([
+            'user_id'       => 'required|exists:users,user_id',
+            'hotel_id'      => 'required|exists:hotels,hotel_id',
+            'room_id'       => 'required|exists:rooms,room_id',
+            'employee_id'   => 'required|exists:employees,employee_id',
+            'check_in_date' => 'required|date',
+            'check_out_date'=> 'required|date|after:check_in_date',
+            'status'        => 'required|in:Pending,Confirmed,Cancelled',
+            'proof_image'   => 'nullable|image|max:2048',
+        ]);
 
         // If a new file is uploaded, store it
         if ($request->hasFile('proof_image')) {
@@ -52,7 +62,12 @@ class AdminBookingsController extends Controller
             $data['proof_image_path'] = $booking->proof_image_path;
         }
 
-        $booking->update($data);
+        $booking->update($validated);
+
+        // Notify the user when status changes
+        if ($booking->wasChanged('status')) {
+            $booking->user->notify(new \App\Notifications\BookingStatusChanged($booking));
+        }
 
         return back()->with('success', 'Booking updated successfully!');
     }
