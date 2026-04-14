@@ -10,6 +10,10 @@ class Hotel extends Model
     protected $primaryKey = 'hotel_id';
 
     protected $fillable = [
-        'name','overview', 'address', 'is_recomended', 'image_path', // adjust to your actual columns
+        'name',
+        'overview',
+        'address',
+        'is_recomended',
+        'image_path',
     ];
 }
