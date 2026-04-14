@@ -1,7 +1,8 @@
 @extends('layouts.admin.navbar')
 
 @section('content')
-<div class="main-content">
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
+
     <!-- Topbar -->
     <div class="topbar d-flex align-items-center justify-content-end">
         <div class="profile-initial">
@@ -12,21 +13,27 @@
 
     <!-- Dashboard Stats -->
     <h2 class="fw-bold mb-2">Dashboard</h2>
-    <div class="row pt-3 m-3 pb-5">
-        <div class="dashboard-data-card col text-center p-3 m-3 reserva-shadow rounded-4">
-            <i class="bi bi-calendar-check display-4"></i>
-            <h5>Total Bookings</h5>
-            <h4 class="fw-bold">{{ $totalBookings }}</h4>
+    <div class="row g-4 pt-3 pb-5">
+        <div class="col-md-4">
+            <div class="dashboard-data-card text-center p-3 reserva-shadow rounded-4">
+                <i class="bi bi-calendar-check display-4"></i>
+                <h5>Total Bookings</h5>
+                <h4 class="fw-bold">{{ $totalBookings }}</h4>
+            </div>
         </div>
-        <div class="dashboard-data-card col text-center p-3 m-3 reserva-shadow rounded-4">
-            <i class="bi bi-people display-4"></i>
-            <h5>Users</h5>
-            <h4 class="fw-bold">{{ $totalUsers }}</h4>
+        <div class="col-md-4">
+            <div class="dashboard-data-card text-center p-3 reserva-shadow rounded-4">
+                <i class="bi bi-hourglass-split display-4"></i>
+                <h5>Pending Bookings</h5>
+                <h4 class="fw-bold">{{ $pendingBookings }}</h4>
+            </div>
         </div>
-        <div class="dashboard-data-card col text-center p-3 m-3 reserva-shadow rounded-4">
-            <i class="bi bi-hourglass-split display-4"></i>
-            <h5>Pending Bookings</h5>
-            <h4 class="fw-bold">{{ $pendingBookings }}</h4>
+        <div class="col-md-4">
+            <div class="dashboard-data-card text-center p-3 reserva-shadow rounded-4">
+                <i class="bi bi-people display-4"></i>
+                <h5>Users</h5>
+                <h4 class="fw-bold">{{ $totalUsers }}</h4>
+            </div>
         </div>
     </div>
 
@@ -72,5 +79,4 @@
             </tbody>
         </table>
     </div>
-</div>
 @endsection

@@ -7,6 +7,7 @@
 @if(session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
 
 <!-- Page Header -->
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-4">

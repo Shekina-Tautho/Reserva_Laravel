@@ -5,7 +5,7 @@
 @section('content')
 
 <!--Include Hotel Search CSS File-->
-<link rel="stylesheet" href="{{ asset('/storage/css/hotels.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/hotels.css') }}"/>
 
 <div class="container-fluid main-div">
     <div class="row">
@@ -18,7 +18,7 @@
         <div class="container-fluid image-container">
             <div class="row justify-content-center">
                 <div class="col-12 px-0">
-                    <img src="{{ asset('/storage/images/hotelsPic.png') }}" alt="Tourist Spot" class="img-fluid w-100 hotelsPic">
+                    <img src="{{ asset('images/hotelsPic.png') }}" alt="Tourist Spot" class="img-fluid w-100 hotelsPic">
                 </div>
 
                 <div class="col-9">
@@ -87,7 +87,7 @@
             </p>
             <!-- Sorting -->
             <div class="d-flex gap-2 mb-3">
-                <img src="{{ asset('/storage/images/sort icon.png') }}" alt="sort icon" class="sortIcon mt-1">
+                <img src="{{ asset('images/sort icon.png') }}" alt="sort icon" class="sortIcon mt-1">
                 <p class="sortText boldText mt-1">Sort by:</p>
                 <select id="sortHotels" class="form-select w-auto">
                     <option value="default">Recommended</option>

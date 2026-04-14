@@ -5,7 +5,7 @@
 @section('content')
 
 <!--Include Payment Verification CSS File-->
-<link rel="stylesheet" href="{{ asset('/storage/css/paymentVerification.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/paymentVerification.css') }}"/>
 
 <div class="container-fluid main-div">
     <div class="row">

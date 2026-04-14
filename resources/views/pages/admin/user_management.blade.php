@@ -6,6 +6,8 @@
     <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
+<link rel="stylesheet" href="{{ asset('css/admin.css') }}"/>
+
 {{-- ================= USERS ================= --}}
 <h2 class="fw-bold mb-4">Users</h2>
 

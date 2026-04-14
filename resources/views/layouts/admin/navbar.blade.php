@@ -8,8 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="{{ asset('Assets/sidebar.css') }}">
-  <link rel="stylesheet" href="{{ asset('Assets/admin.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 <body>
 
@@ -19,19 +19,31 @@
     <div class="sidebar" style="width:250px;">
         <div>
             <div class="logo">
-                <img src="{{ asset('Assets/adminlogo.png') }}">
+                <img src="{{ asset('images/adminlogo.png') }}">
             </div>
 
             <nav>
-                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-                <a href="{{ route('admin.booking') }}">Bookings</a>
-                <a href="{{ route('admin.user_management') }}">User Management</a>
+                <a href="{{ route('admin.dashboard') }}">
+                    <img src="{{ asset('images/dashboardicon.png') }}" alt="">
+                    Dashboard
+                </a>
+                <a href="{{ route('admin.booking') }}">
+                    <img src="{{ asset('images/bookingsicon.png') }}" alt="">
+                    Bookings
+                </a>
+                <a href="{{ route('admin.user_management') }}">
+                    <img src="{{ asset('images/customersicon.png') }}" alt="">
+                    User Management
+                </a>
             </nav>
         </div>
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="btn btn-link">Logout</button>
+            <button type="submit" class="logout-btn">
+                <img src="{{ asset('images/logouticon.png') }}" alt="">
+                Logout
+            </button>
         </form>
     </div>
 
