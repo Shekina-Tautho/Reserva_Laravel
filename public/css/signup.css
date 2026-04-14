@@ -88,16 +88,17 @@ input:focus {
 
 .bg-overlay {
   position: absolute;
-  top: -35%;
-  left: -12%;
-  width: 80%;
-  height: 180%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background-image: url("../Assets/dotted-arrow-bg.png");
+  background-image: url("/images/dotted-arrow-bg.png");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain; /* or cover */
+  background-position: right -250px center;
+  background-size: 130%; /* or cover */
   pointer-events: none;
+  z-index: 1;
 }
 
 .login-socials-icon {
