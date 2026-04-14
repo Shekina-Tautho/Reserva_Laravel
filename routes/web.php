@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminUserManagementController;
 use App\Http\Controllers\AdminHotelController;
 use App\Http\Controllers\UserHomepageController;
 use App\Http\Controllers\UserHotelSearchController;
+use App\Http\Controllers\UserHotelsController;
 use App\Http\Controllers\UserBookingController;
 use App\Http\Controllers\UserPaymentDetailsController;
 use App\Http\Controllers\UserPaymentVerificationController;
@@ -56,6 +57,8 @@ Route::prefix('/admin')->middleware('employee.access')->group(function() {
 Route::middleware('auth:web')->group(function() {
     Route::get('/userhomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
     Route::get('/userhotelsearch', [UserHotelSearchController::class, 'index'])->name('UserHotelSearchRoute');
+    Route::get('/hoteldetails/{id}',[UserHotelsController::class, 'hoteldetails']);
+    # TO DELETE: {{ url('hoteldetails', $hotel->hotel_id) }}
     Route::get('/userbooking', [UserBookingController::class, 'index'])->name('UserBookingRoute');
     Route::get('/userpaymentdetails', [UserPaymentDetailsController::class, 'index'])->name('UserPaymentDetailsRoute');
     Route::get('/userpaymentverification', [UserPaymentVerificationController::class, 'index'])->name('UserPaymentVerificationRoute');

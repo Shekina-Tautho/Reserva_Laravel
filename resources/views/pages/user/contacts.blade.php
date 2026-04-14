@@ -5,7 +5,7 @@
 @section('content')
 
 <!--Include Contacts CSS File-->
-<link rel="stylesheet" href="{{ asset('css/contacts.css') }}"/>
+<link rel="stylesheet" href="{{ asset('/css/contacts.css') }}"/>
 
 <div class="container-fluid">
     <div class="row">
