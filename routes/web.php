@@ -65,9 +65,10 @@ Route::middleware('auth:web')->group(function() {
     Route::get('/userhomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
     Route::get('/userhotelsearch', [UserHotelSearchController::class, 'index'])->name('UserHotelSearchRoute');
     Route::get('/hoteldetails/{id}',[UserHotelsController::class, 'hoteldetails']);
-    # TO DELETE: {{ url('hoteldetails', $hotel->hotel_id) }}
+    Route::get('/paymentdetails/{id}',[UserPaymentDetailsController::class, 'paymentdetails']);
     Route::get('/userbooking', [UserBookingController::class, 'index'])->name('UserBookingRoute');
     Route::get('/userpaymentdetails', [UserPaymentDetailsController::class, 'index'])->name('UserPaymentDetailsRoute');
+    Route::post('/userpaymentdetails', [UserPaymentDetailsController::class, 'storeForm'])->name('UserPaymentDetailsStoreRoute');
     Route::get('/userpaymentverification', [UserPaymentVerificationController::class, 'index'])->name('UserPaymentVerificationRoute');
     Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
     Route::get('/useraccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');

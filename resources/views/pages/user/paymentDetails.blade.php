@@ -34,39 +34,71 @@
             <div class="col-4 ms-5">
                 <div class="hotel-container mt-2 ms-auto d-flex flex-column p-4">
                     <img src="../Assets/booking page hotel.png" alt="hotel room" class="room-img align-self-center">
-                    <p class="bold blue large pt-2 hotelName mb-0">Hotel A</p>
+                    <p class="">{{ $hotel }}</p>
                     <div class="d-flex mt-2">
                         <i class="bi bi-geo-alt p-0 gray"></i>
-                        <span class="hotel-info">Manila, Luzon</span>
+                        <span class="hotel-info">{{ $hoteladdress }}</span>
                     </div>
-                    <div class="d-flex gap-1 mt-1">
-                        <i class="bi bi-star-fill star-icon"></i>
-                        <p class="hotel-info">3/5</p>
-                        <p class="hotel-info gray">(34)</p>
-                        <p class="hotel-info">See reviews</p>
+                    <p class="mt-2 hotel-info-header bold mb-0">{{ $rooms->room_type }}</p>
+                    <p class="mt-2 hotel-info-header mb-0">{{ $rooms->capacity }}</p>
+                    <p class="mt-2 hotel-info-header mb-0">{{ $rooms->no_of_beds }}</p>
+                    <p class="mt-2 hotel-info-header mb-0">Amenities</p>
+                    <div class="d-flex gap-2 mt-0">
+                        <p class="card-text">{{ $rooms->amenities }}</p>
                     </div>
-                    <p class="mt-2 hotel-info-header bold mb-0">Offers:</p>
-                    <div class="d-flex gap-2 mt-0 gray">
-                        <div class="offers px-3">Breakfast included</div>
-                        <div class="offers px-3">Pets allowed</div>
-                    </div>
-                    <span class="mt-4 hotel-info-header">2 Guests, 1 Room</span>
-                    <span class="blue bold large">₱10,000</span>
+                    <span class="blue bold large">₱{{ $rooms->room_rates }}</span>
                     <p class="hotel-info gray">Per night before <br>taxes and fees</p>
-                    <span class="blue bold large">Your Booking Details</span>
-                    <div class="d-flex gap-2 hotel-info justify-content-between">
-                        <div class="d-flex flex-column align-items-center mt-2">
-                            <span class="gray">Check In</span>
-                            <p>Dec 1, 2025</p>
-                        </div>
-                        <div class="d-flex flex-column align-items-center mt-2">
-                            <span class="gray">Check Out</span>
-                            <p>Dec 4, 2025</p>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div class="col-8 d-flex ms-2 mt-2">
+
+
+            <div class="col-8 ms-2 mt-2">
+                <form action="{{ route('UserPaymentDetailsStoreRoute') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <div class="details-container p-5 position-relative">
+                            <p class="xl blue bold">Enter your details</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="firstName">First Name</label>
+                                    <input readonly type="text" class="form-control" id="firstName" name="firstName" value="{{ Auth::user()->first_name }}">
+                                </div>
+                                <div class="col-6">
+                                    <label for="lastName">Last Name</label>
+                                    <input readonly type="text" class="form-control" id="lastName" name="lastName" value="{{ Auth::user()->last_name }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="emailAddress">Email Address</label>
+                                    <input readonly type="text" class="form-control" id="emailAddress" name="emailAddress" value="{{ Auth::user()->email }}">
+                                </div>
+                                <div class="col-6">
+                                    <label for="phoneNumber">Phone Number</label>
+                                    <input readonly type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="{{ Auth::user()->phone_no }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="check_in_date">Check-in Date</label>
+                                    <input type="date" class="form-control" id="check_in_date" name="check_in_date">
+                                </div>
+                                <div class="col-6">
+                                    <label for="check_out_date">Check-out Date</label>
+                                    <input type="date" class="form-control" id="check_out_date" name="check_out_date">
+                                </div>
+                            </div>
+                            <p class="xl blue bold">Special Request</p>
+                            <textarea class="form-control" id="request" name="request" rows="3" placeholder="i.e. extra pillows"></textarea>
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="submit" class="bold pay-btn text-decoration-none text-white">Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!--
                 <div class="details-container d-flex flex-column p-5 position-relative">
                     <p class="xl blue bold">Enter your details</p>
                     <div class="d-flex gap-3">
@@ -77,6 +109,18 @@
                         <input type="text" placeholder="Email Address" class="fname input p-2">
                         <input type="text" placeholder="Phone Number" class="lname input p-2">
                     </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <p>Check-in Date</p>
+                            <input type="date" name="check_in_date">
+                        </div>
+                        <div class="col-6">
+                            <p>Check-out Date</p>
+                            <input type="date" name="check_out_date">
+                        </div>
+                    </div>
+
                     <input type="text" placeholder="Address" class="fname input address p-2 mt-5">
                     <div class="d-flex gap-3 mt-3">
                         <input type="text" placeholder="City" class="fname input p-2">
@@ -96,11 +140,12 @@
                     <label class="large">
                         <input type="checkbox" name="smoking_preference" value="smoking" class="checkbox"> Smoking
                     </label>
-
                     <div class="d-flex justify-content-end mt-4">
                         <a href="paymentVerification.php" class="bold pay-btn text-decoration-none text-white">Pay</a>
                     </div>
                 </div>
+                -->
+
             </div>
         </div>
     </div>
