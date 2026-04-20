@@ -15,7 +15,17 @@ return new class extends Migration
             $table->id('hotel_id');
             $table->string('name');
             $table->text('overview');
-            $table->string('address');
+
+            //FK
+            $table->foreignId('address_id')
+                ->constrained('address', 'address_id')
+                ->onDelete('cascade');
+
+            $table->integer('min_capacity')->nullable();
+            $table->integer('max_capacity');
+            $table->integer('min_rate')->nullable();
+            $table->integer('max_rate');
+            $table->integer('rating')->nullable();
             $table->boolean('is_recommended')->default(false);
             $table->string('image_path')->nullable();
             $table->timestamps();

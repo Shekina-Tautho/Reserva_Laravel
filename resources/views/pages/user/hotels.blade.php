@@ -18,7 +18,7 @@
         <div class="container-fluid image-container">
             <div class="row justify-content-center">
                 <div class="col-12 px-0">
-                    <img src="{{ asset('/images/hotelsPic.png') }}" alt="Tourist Spot" class="img-fluid w-100 hotelsPic">
+                    <img src="{{ asset('/images/search-banner.png') }}" alt="Tourist Spot" class="img-fluid w-100 hotelsPic">
                 </div>
 
                 <div class="col-9">
