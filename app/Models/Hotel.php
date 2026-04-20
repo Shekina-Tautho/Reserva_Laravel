@@ -18,6 +18,7 @@ class Hotel extends Model
         'min_rate',
         'max_rate',
         'rating',
+        'features',
         'is_recomended',
         'image_path'
     ];

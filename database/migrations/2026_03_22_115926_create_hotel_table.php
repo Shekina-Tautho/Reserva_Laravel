@@ -21,11 +21,12 @@ return new class extends Migration
                 ->constrained('address', 'address_id')
                 ->onDelete('cascade');
 
-            $table->integer('min_capacity')->nullable();
-            $table->integer('max_capacity');
-            $table->integer('min_rate')->nullable();
-            $table->integer('max_rate');
+            $table->integer('min_capacity');
+            $table->integer('max_capacity')->nullable();
+            $table->integer('min_rate');
+            $table->integer('max_rate')->nullable();
             $table->integer('rating')->nullable();
+            $table->text('features');
             $table->boolean('is_recommended')->default(false);
             $table->string('image_path')->nullable();
             $table->timestamps();
