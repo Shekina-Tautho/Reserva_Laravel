@@ -2,24 +2,6 @@
 
 @section('title', 'Payment Verification')
 
-<script>
-    function computeNights() {
-        const checkInDate = {{ session('check_in_date') }};
-        const checkOutDate = {{ session('check_out_date') }};
-        let checkIn = new Date(checkInDate);
-        let checkOut = new Date(checkOutDate);
-        let timeDifference = checkOut - checkIn;
-        let numberOfNights = timeDifference / (1000 * 3600 * 24);
-        return numberOfNights;
-    }
-
-    function computeTotal(numberOfNights) {
-        const roomRate = {{ session('room_rates') }};
-        let totalAmount = numberOfNights * roomRate;
-        return totalAmount;
-    }
-</script>
-
 @section('content')
 
 <!--Include Payment Verification CSS File-->
@@ -49,14 +31,14 @@
                 </div>
 
                 <div class="base-container d-flex p-5 flex-column">
-                    <img src="{{ asset('/images/' . $hotel->image_path . '.png') }}" alt="{{ $hotel->name }}" class="img-fluid align-self-center mb-5">
+                    <img src="{{ asset('/images/' . $hotel_img . '.png') }}" alt="{{ $hotel_name }}" class="img-fluid align-self-center mb-5">
                     <div class="summary">
                         <span class="blue bold xl">Your Trip Summary</span>
                         <div class="d-flex justify-content-between">
-                            <span>Check In</span><span>{{ session('check_in_date') }}</span>
+                            <span>Check In</span><span>{{ $checkInDate }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <span>Check Out</span><span>{{ session('check_out_date') }}</span>
+                            <span>Check Out</span><span>{{ $checkOutDate }}</span>
                         </div>
                     </div>
 
@@ -64,18 +46,20 @@
                         <span class="blue bold xl">Pricing Breakdown</span>
                         <hr>
                         <div class="d-flex justify-content-between">
-                            <span>Number of Nights</span><span>2</span>
+                            <span>Number of Nights</span><span>{{ $numberOfNights }}</span>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <span>Per Night Stay</span><span>₱{{ session('room_rates') }}</span>
+                            <span>Per Night Stay</span><span>₱{{ number_format($room_rates, 2) }}</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between bold">
-                            <span>Total</span><span>₱22,400.00</span>
+                            <span>Total</span><span>${{ number_format($total_amount, 2) }}</span>
                         </div>
+                        <a href="{{ url('userhomepage') }}" class="bold upload-btn mt-2 float-end" role="button" style="text-decoration: none; text-align: center">Okay</a>
                     </div>
                 </div>
 
+                <!--
                 <div class="base-container d-flex flex-column p-5 mt-5 mb-5">
                     <span class="blue bold xl mb-3">Upload Proof of Payment</span>
                     <div class="upload-box d-flex align-items-center justify-content-between base-container p-2">
@@ -87,12 +71,12 @@
                         <button type="button" class="bold verify-btn" data-bs-toggle="modal" data-bs-target="#payVerModal">
                             Verify
                         </button>
-                        <!-- Modal -->
+                        
                             <div class="modal fade" id="payVerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-body text-center p-5">
-                                        <!--Contents of Modal-->
+                                        
                                         <span class="blue bold xl mb-3">Payment Sent!</span>
                                         <br>
                                         <div class="p-4">
@@ -102,15 +86,17 @@
                                             </svg>
                                         </div>
                                         <p>Your payment has been successfully sent for verification. A notification email will be sent to your account after the process has been completed.</p><br>
-                                        <!--<button type="button" class="bold verify-btn" data-bs-dismiss="modal">Okay</button>-->
+                                        
                                         <a href="homepage.php" class="bold verify-btn">Okay</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Modal-->
+                        
                     </div>
                 </div>
+                -->
+
             </div>
         </div>
     </div>

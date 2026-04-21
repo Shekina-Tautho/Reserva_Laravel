@@ -74,7 +74,7 @@ Route::middleware('auth:web')->group(function() {
     #Route::post('/userpaymentdetails', [UserPaymentDetailsController::class, 'storeForm'])->name('UserPaymentDetailsStoreRoute');
     Route::resource('paymentdetails', UserPaymentDetailsController::class);
 
-    Route::get('/userpaymentverification', [UserPaymentVerificationController::class, 'index'])->name('UserPaymentVerificationRoute');
+    Route::get('/userpaymentverification/{id}', [UserPaymentVerificationController::class, 'verificationDetails'])->name('UserPaymentVerificationRoute');
     Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
     Route::get('/useraccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');
     Route::get('/usercontacts', [UserContactsController::class, 'index'])->name('UserContactsRoute');

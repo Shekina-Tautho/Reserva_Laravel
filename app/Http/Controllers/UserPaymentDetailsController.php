@@ -55,7 +55,8 @@ class UserPaymentDetailsController extends Controller
         $validated['proof_image_path'] = null;
 
         BookingModel::create($validated);
-        return redirect()->route('UserPaymentVerificationRoute')
+
+        return redirect()->route('UserPaymentVerificationRoute', ['id' => BookingModel::latest()->first()->booking_id])
                          ->with('success', 'Booking made successfully!');
     }
 
