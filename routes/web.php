@@ -49,6 +49,7 @@ Route::prefix('/admin')->middleware('employee.access')->group(function() {
     Route::post('/rooms', [AdminRoomController::class, 'store'])->name('rooms.store');
     Route::put('/rooms/{id}', [AdminRoomController::class, 'update'])->name('rooms.update');
     Route::delete('/rooms/{id}', [AdminRoomController::class, 'destroy'])->name('rooms.delete');
+    Route::get('/rooms/by-hotel/{hotel_id}', [AdminRoomController::class, 'getRoomsByHotel'])->name('rooms.byHotel');
 
     Route::get('/users', [AdminUserManagementController::class, 'index'])->name('admin.user_management');
     Route::post('/users/store', [AdminUserManagementController::class, 'storeUser'])->name('users.store');

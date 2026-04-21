@@ -38,7 +38,7 @@ class BookingStatusChanged extends Notification
     {
         return (new MailMessage)
             ->subject('Booking Status Update')
-            ->greeting('Hello ' . $this->booking->user->first_name)
+            ->greeting('Hello ' . ($this->booking->user->first_name ?? 'Bestie'))
             ->line('Your booking #' . $this->booking->booking_id . ' has been updated.')
             ->line('New Status: ' . $this->booking->status)
             ->line('Thank you for choosing us!');

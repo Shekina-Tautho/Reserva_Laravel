@@ -69,4 +69,10 @@ class AdminRoomController extends Controller
 
         return back()->with('success', 'Room deleted successfully!');
     }
+
+    public function getRoomsByHotel($hotel_id)
+    {
+        $rooms = Room::where('hotel_id', $hotel_id)->get(['room_id','room_type']);
+        return response()->json($rooms);
+    }
 }

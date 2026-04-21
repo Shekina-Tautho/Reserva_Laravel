@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\BookingModel;
 use App\Models\User;
 use App\Models\Employee;
@@ -24,7 +25,26 @@ class AdminBookingsController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $request->validate([
+            'user_id'       => 'required|exists:users,user_id',
+            'hotel_id'      => 'required|exists:hotels,hotel_id',
+            'room_id'       => 'required|exists:rooms,room_id',
+            'employee_id'   => 'required|exists:employees,employee_id',
+            'check_in_date' => ['required', 'date', 'after:today'],
+            'check_out_date'=> ['required', 'date', 'after:check_in_date'],
+            'proof_image'   => 'nullable|image',
+            'status'        => 'required|in:Pending,Confirmed,Cancelled',
+        ]);
+
+        // Extra check: prevent same-day check-in and check-out
+        $checkIn  = Carbon::parse($request->check_in_date);
+        $checkOut = Carbon::parse($request->check_out_date);
+
+        if ($checkOut->diffInDays($checkIn) < 1) {
+            return back()->withErrors([
+                'check_out_date' => 'Checkout must be at least the next day.',
+            ]);
+        }
 
         // Handle file upload
         if ($request->hasFile('proof_image')) {
@@ -47,11 +67,21 @@ class AdminBookingsController extends Controller
             'hotel_id'      => 'required|exists:hotel,hotel_id',
             'room_id'       => 'required|exists:room,room_id',
             'employee_id'   => 'required|exists:employee,employee_id',
-            'check_in_date' => 'required|date',
-            'check_out_date'=> 'required|date|after:check_in_date',
+            'check_in_date' => ['required', 'date', 'after:today'],
+            'check_out_date'=> ['required', 'date', 'after:check_in_date'],
             'status'        => 'required|in:Pending,Confirmed,Cancelled',
             'proof_image'   => 'nullable|image|max:2048',
         ]);
+
+        // Extra check: prevent same-day check-in and check-out
+        $checkIn  = Carbon::parse($request->check_in_date);
+        $checkOut = Carbon::parse($request->check_out_date);
+
+        if ($checkOut->diffInDays($checkIn) < 1) {
+            return back()->withErrors([
+                'check_out_date' => 'Checkout must be at least the next day.',
+            ]);
+        }
 
         // If a new file is uploaded, store it
         if ($request->hasFile('proof_image')) {

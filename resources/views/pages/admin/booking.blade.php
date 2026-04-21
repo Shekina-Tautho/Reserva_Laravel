@@ -95,18 +95,15 @@
                     @endforeach
                 </select>
 
-                <select name="hotel_id" class="form-control mb-2" required>
+                <select name="hotel_id" id="hotelSelect" class="form-control mb-2" required>
                     <option value="">Select Hotel</option>
                     @foreach($hotels as $hotel)
                         <option value="{{ $hotel->hotel_id }}">{{ $hotel->name }}</option>
                     @endforeach
                 </select>
 
-                <select name="room_id" class="form-control mb-2" required>
+                <select name="room_id" id="roomSelect" class="form-control mb-2" required>
                     <option value="">Select Room</option>
-                    @foreach($rooms as $room)
-                        <option value="{{ $room->room_id }}">{{ $room->room_type }}</option>
-                    @endforeach
                 </select>
 
                 <select name="employee_id" class="form-control mb-2" required>
@@ -117,8 +114,13 @@
                 </select>
 
                 <!-- other fields -->
-                <input type="date" name="check_in_date" class="form-control mb-2" required>
-                <input type="date" name="check_out_date" class="form-control mb-2" required>
+                <input type="date" name="check_in_date" class="form-control mb-2" 
+                    value="{{ $booking->check_in_date }}" 
+                    min="{{ date('Y-m-d') }}" required>
+
+                <input type="date" name="check_out_date" class="form-control mb-2" 
+                    value="{{ $booking->check_out_date }}" 
+                    min="{{ date('Y-m-d') }}" required>
 
                 <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
 
@@ -202,7 +204,7 @@
                     @endforeach
                 </select>
                 
-                <select name="hotel_id" class="form-control mb-2" required>
+                <select name="hotel_id" id="hotelSelect{{ $booking->booking_id }}" class="form-control mb-2">
                     @foreach($hotels as $hotel)
                         <option value="{{ $hotel->hotel_id }}" {{ $booking->hotel_id == $hotel->hotel_id ? 'selected' : '' }}>
                             {{ $hotel->name }}
@@ -210,12 +212,8 @@
                     @endforeach
                 </select>
 
-                <select name="room_id" class="form-control mb-2" required>
-                    @foreach($rooms as $room)
-                        <option value="{{ $room->room_id }}" {{ $booking->room_id == $room->room_id ? 'selected' : '' }}>
-                            {{ $room->room_type }}
-                        </option>
-                    @endforeach
+                <select name="room_id" id="roomSelect{{ $booking->booking_id }}" class="form-control mb-2">
+                    <option value="">Select Room</option>
                 </select>
 
                 <select name="employee_id" class="form-control mb-2" required>
@@ -227,8 +225,13 @@
                 </select>
 
                 <!-- other fields -->
-                <input type="date" name="check_in_date" class="form-control mb-2" value="{{ $booking->check_in_date }}" required>
-                <input type="date" name="check_out_date" class="form-control mb-2" value="{{ $booking->check_out_date }}" required>
+                <input type="date" name="check_in_date" class="form-control mb-2" 
+                    value="{{ $booking->check_in_date }}" 
+                    min="{{ date('Y-m-d') }}" required>
+
+                <input type="date" name="check_out_date" class="form-control mb-2" 
+                    value="{{ $booking->check_out_date }}" 
+                    min="{{ date('Y-m-d') }}" required>
 
                 <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
 
@@ -270,6 +273,44 @@
         </div>
     </div>
 </div>
+
 @endforeach
+
+<script>
+document.querySelectorAll('[id^="hotelSelect"]').forEach(hotelSelect => {
+    hotelSelect.addEventListener('change', function() {
+        let hotelId = this.value;
+        let bookingId = this.id.replace('hotelSelect', '');
+        let roomSelect = document.getElementById('roomSelect' + bookingId);
+
+        roomSelect.innerHTML = '<option value="">Loading...</option>';
+
+        if (hotelId) {
+            fetch(`/admin/rooms/by-hotel/${hotelId}`)
+                .then(response => response.json())
+                .then(data => {
+                    roomSelect.innerHTML = '<option value="">Select Room</option>';
+                    data.forEach(room => {
+                        roomSelect.innerHTML += `<option value="${room.room_id}">${room.room_type}</option>`;
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                    roomSelect.innerHTML = '<option value="">Error loading rooms</option>';
+                });
+        } else {
+            roomSelect.innerHTML = '<option value="">Select Room</option>';
+        }
+    });
+});
+
+document.querySelectorAll('[id^="editBookingModal"]').forEach(modal => {
+    modal.addEventListener('shown.bs.modal', function() {
+        let hotelSelect = modal.querySelector('[id^="hotelSelect"]');
+        hotelSelect.dispatchEvent(new Event('change'));
+    });
+});
+
+</script>
 
 @endsection
