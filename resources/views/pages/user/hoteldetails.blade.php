@@ -15,7 +15,7 @@
     <div class="col-12 d-flex align-items-center flex-column">
         <div class="col-10 mt-3">
             <div class="base-container p-5 mb-5">
-                <img src="../Assets/payment verification hotel.jpg" alt="hotel room" class="img-fluid align-self-center mb-5">
+                <img src="{{ asset('/images/' . $hotels->image_path . '.png') }}" alt="{{ $hotels->name }}" class="img-fluid align-self-center mb-5">
                 <p class="bold blue xl pt-2 hotelName mb-0">{{ $hotels->name }}</p>
                 <div class="d-flex mt-2 align-items-center">
                     <i class="bi bi-geo-alt p-0 gray me-1"></i>

@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="base-container d-flex p-5 flex-column">
-                    <img src="{{ asset('/images/payment verification hotel.jpg') }}" alt="hotel room" class="img-fluid align-self-center mb-5">
+                    <img src="{{ asset('/images/' . $hotel->image_path . '.png') }}" alt="{{ $hotel->name }}" class="img-fluid align-self-center mb-5">
                     <div class="summary">
                         <span class="blue bold xl">Your Trip Summary</span>
                         <div class="d-flex justify-content-between">

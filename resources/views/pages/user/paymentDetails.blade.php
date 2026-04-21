@@ -12,6 +12,17 @@
         <div class="col-12">
             @include('layouts.user.navbar')
         </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="d-flex justify-content-center my-3">
             <div class="col-10 mx-auto">
                 <div class="progress-container d-flex justify-content-between text-center position-relative">
@@ -33,11 +44,11 @@
         <div class="col-10 d-flex gap-5">
             <div class="col-4 ms-5">
                 <div class="hotel-container mt-2 ms-auto d-flex flex-column p-4">
-                    <img src="../Assets/booking page hotel.png" alt="hotel room" class="room-img align-self-center">
+                    <img src="{{ asset('/images/' . $rooms->hotel->image_path . '.png') }}" alt="{{ $rooms->hotel->name }}" class="room-img align-self-center">
                     <p class="">{{ $hotel }}</p>
                     <div class="d-flex mt-2">
                         <i class="bi bi-geo-alt p-0 gray"></i>
-                        <span class="hotel-info">{{ $hoteladdress }}</span>
+                        <span class="hotel-info">{{ $hotelCity }}, {{ $hotelCountry }}</span>
                     </div>
                     <p class="mt-2 hotel-info-header bold mb-0">{{ $rooms->room_type }}</p>
                     <p class="mt-2 hotel-info-header mb-0">{{ $rooms->capacity }}</p>
@@ -53,7 +64,8 @@
 
 
             <div class="col-8 ms-2 mt-2">
-                <form action="{{ route('UserPaymentDetailsStoreRoute') }}" method="POST">
+
+                <form action="{{ route('paymentdetails.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <div class="details-container p-5 position-relative">
@@ -95,6 +107,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <!--hidden values-->
+                    <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
+                    <input type="hidden" name="hotel_id" value="{{ $rooms->hotel_id }}">
+                    <input type="hidden" name="room_id" value="{{ $rooms->room_id }}">
+                    <input type="hidden" name="status" value="Pending">
                 </form>
 
 

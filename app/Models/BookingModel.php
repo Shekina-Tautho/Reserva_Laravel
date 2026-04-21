@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+#use carbon\Carbon; #To calculate number of nights between dates
 
 class BookingModel extends Model
 {
@@ -16,6 +17,8 @@ class BookingModel extends Model
         'employee_id',
         'check_in_date',
         'check_out_date',
+        'request',
+        'total_amount',
         'proof_image_path',
         'status',
     ];
@@ -36,4 +39,15 @@ class BookingModel extends Model
     public function employee() {
         return $this->belongsTo(Employee::class, 'employee_id', 'employee_id');
     }
+
+    /*
+    public function getTotalAmount() {
+        $checkInDate = Carbon::parse($this->check_in_date);
+        $checkOutDate = Carbon::parse($this->check_out_date);
+        $nights = $checkInDate->diffInDays($checkOutDate);
+        $totalAmount = $nights * $this->room->room_rates;
+        return $totalAmount;
+    }
+    */
+
 }

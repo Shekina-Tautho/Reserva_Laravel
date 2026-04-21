@@ -57,7 +57,7 @@
                                             <div class="row">
 
                                                 <div class="col-4">
-                                                    <img src="{{ asset('/images/' . $hotel->image_path . '.png') }}" alt="Casa Chameleon" class="img-fluid rounded">
+                                                    <img src="{{ asset('/images/' . $hotel->image_path . '.png') }}" alt="{{ $hotel->name }}" class="img-fluid rounded">
                                                 </div>
                                                 <div class="col-8">
                                                     <h2 class="card-title">{{ $hotel->name }}</h2>
