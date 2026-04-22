@@ -69,4 +69,11 @@
     opacity: 0.9;
 }
 
+table .action-icons img {
+  width: 20px; /* optional: keeps icons uniform */
+  /*margin: 0 2px;  horizontal space between icons */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
 

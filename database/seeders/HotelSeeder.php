@@ -23,63 +23,68 @@ class HotelSeeder extends Seeder
 
         DB::table('hotel')->insert([
             [
-                'name' => 'Radisson Blu',
-                'overview' => 'Radisson Blu is a luxury hotel offering modern amenities and breathtaking waterfront views. Guests can enjoy elegantly designed rooms, a full-service spa, gourmet dining options, and personalized concierge services, ensuring a relaxing and memorable stay.',
-                'address' => '6000, Corner Juan Luna Avenue, Cebu City, Philippines',
+                'name' => 'Casa Chameleon',
+                'overview' => 'Located on the northern Pacific coast with a vibrant, yet peaceful atmosphere offset by the miles of shoreline and mountain biking and hiking trails nearby, Casa Chameleon at Las Catalinas embodies the pura vida lifestyle. Enjoy complete privacy as you unwind in your individual, private pool villa or wander and wonder along the calm, sandy beaches and abundant outdoor spaces.',
+                'address_id' => 1,
+                'min_capacity' => 2,
+                'max_capacity' => null,
+                'min_rate' => 1040,
+                'max_rate' => null,
+                'rating' => 5,
+                'features' => 'Free Breakfast, Free WiFi, Parking Space, Private Balcony, Swimming Pool',
+                'image_path' => 'casa-chameleon',
                 'is_recommended' => true
             ],
             [
-                'name' => 'Ocean View Hotel',
-                'overview' => 'Ocean View Hotel provides guests with stunning panoramic views of the ocean. The rooms are spacious and well-appointed, featuring modern décor and private balconies. Guests can enjoy a rooftop restaurant, easy beach access, and activities such as snorkeling and boat tours.',
-                'address' => '6100, 1 Ocean St., Manila City, Philippines',
-                'is_recommended' => false
-            ],
-            [
-                'name' => 'Mountain Retreat',
-                'overview' => 'Mountain Retreat is a serene getaway nestled in the mountains, perfect for nature lovers and those seeking peace. The resort offers cozy cabins, guided hiking trails, a wellness center, and an organic restaurant sourcing ingredients from local farms.',
-                'address' => '6101, 5 Mountain Rd., Tagaytay City, Philippines',
-                'is_recommended' => false
-            ],
-            [
-                'name' => 'City Center Inn',
-                'overview' => 'City Center Inn is located in the heart of the city, offering convenient access to shopping, dining, and entertainment. The rooms are comfortable and affordable, making it ideal for travelers on a budget who still want quality accommodations.',
-                'address' => '6102, 10 Central Ave., Boracay Island, Philippines',
-                'is_recommended' => false
-            ],
-            [
-                'name' => 'Riverside Apartments',
-                'overview' => 'Riverside Apartments provide modern, fully-furnished apartments by the riverside, ideal for both short and long-term stays. Guests can enjoy scenic river views, private balconies, communal lounges, and fully equipped kitchens.',
-                'address' => '6000, 22 Riverside Blvd., Cebu City, Philippines',
-                'is_recommended' => false
-            ],
-            [
-                'name' => 'Luxury Stay',
-                'overview' => 'Luxury Stay offers a premium experience with elegant rooms, personalized service, and exclusive amenities. Guests can enjoy a rooftop pool, fine dining restaurants, a fitness center, and private event spaces for a truly lavish stay.',
-                'address' => '6104, 15 Luxury St., Davao City, Philippines',
+                'name' => 'Casa De Campo Resort and Villas',
+                'overview' => 'Casa de Campo Resort and Villas, the most exclusive resort destination in the Caribbean, is a stunning 7,000-acre hotel, resort, and residential community in La Romana on the southeastern coast of the Dominican Republic. The tropical playground features a unique array of amenities, including an expansive marina, tennis courts, and polo facilities. The resort is also one of the most sought-after Dominican Republic golf resorts featuring three championship golf courses — including Pete Dye’s masterpiece, Teeth of the Dog, the #1 ranked course in the Caribbean and number 39 in the world.',
+                'address_id' => 2,
+                'min_capacity' => 4,
+                'max_capacity' => null,
+                'min_rate' => 499,
+                'max_rate' => 699,
+                'rating' => 5,
+                'features' => 'Free WiFi, Private Balcony',
+                'image_path' => 'casa-de-campo',
                 'is_recommended' => true
             ],
             [
-                'name' => 'Cozy Cottage',
-                'overview' => 'Cozy Cottage is a charming and intimate retreat, perfect for couples and small families. Surrounded by nature, it features rustic yet comfortable interiors, a garden area, and outdoor seating to enjoy peaceful mornings and evenings.',
-                'address' => '6105, 30 Cozy Lane, Baguio City, Philippines',
-                'is_recommended' => false
-            ],
-            [
-                'name' => 'Sunset Villas',
-                'overview' => 'Sunset Villas offers luxurious private villas with stunning sunset views. Each villa features modern amenities, private pools, and spacious living areas. Guests can enjoy personalized services, beach access, and exclusive recreational activities.',
-                'address' => '6106, 45 Sunset Blvd, Iloilo City, Philippines',
+                'name' => 'Hyatt Zilara Cap Cana',
+                'overview' => 'Hyatt Zilara Cap Cana, is an all-inclusive resort exclusively for adults, set in the beautiful gated community of Cap Cana. Located on the sought-after shores of Juanillo Beach in the Dominican Republic, Hyatt Zilara Cap Cana is a tropical paradise where guests can indulge in all-inclusive luxury surrounded by local culture, magnificent ocean views and incredible amenities. The resort offers infinity pools with swim-up bars, 25 unique restaurants and bars, a world-class fitness center and so much more. Luxurious inclusions and welcoming staff ensure a vacation at Hyatt Zilara Cap Cana will exceed guests’ expectations in every way imaginable.',
+                'address_id' => 3,
+                'min_capacity' => 2,
+                'max_capacity' => 4,
+                'min_rate' => 770,
+                'max_rate' => 1328,
+                'rating' => 5,
+                'features' => 'Free Parking, Free WiFi, Restaurant, Swimming Pool',
+                'image_path' => 'hyatt-zilara',
                 'is_recommended' => true
             ],
             [
-                'name' => 'Heritage Inn',
-                'overview' => 'Heritage Inn combines historical charm with modern comforts. Guests can explore the rich local culture, enjoy classic décor, and experience personalized service. The inn offers cozy rooms, a library, and traditional local cuisine.',
-                'address' => '6107, 50 Heritage St., Bohol Island, Philippines',
+                'name' => 'Dreams La Romana',
+                'overview' => 'With spectacular, white-sand shoreline and breathtaking views, Dreams La Romana Resort & Spa near Punta Cana, is the ideal destination to enjoy an endless array of family fun and relaxation. Featuring an exciting water park where guests of all ages can challenge exhilarating slides, and surrounded by lush tropical forest, the beachfront resort is perfect for a family getaway. Dreams La Romana Resort & Spa, is designed for all ages and features amenities that will surprise, including family-sized guest rooms and a variety of cuisine for all tastes.',
+                'address_id' => 4,
+                'min_capacity' => 2,
+                'max_capacity' => 4,
+                'min_rate' => 566,
+                'max_rate' => 877,
+                'rating' => 4,
+                'features' => 'Free WiFi, Restaurant, Swimming Pool',
+                'image_path' => 'dreams-la-romana',
                 'is_recommended' => false
             ],
             [
-                'name' => 'Green Garden Hotel',
-                'overview' => 'Green Garden Hotel is set in lush greenery, offering a peaceful retreat from the city. Guests can enjoy eco-friendly accommodations, landscaped gardens, an outdoor pool, and wellness programs promoting relaxation and sustainability.',
-                'address' => '6108, 65 Green Garden Rd., Palawan Island, Philippines',
+                'name' => 'Sanctuary Cap Cana',
+                'overview' => 'Sanctuary Cap Cana is an adults only, all inclusive resort located in Cap Cana, a private gated community retreat inside Punta Cana. Cap Cana is made up of 30,000 acres of flawless beaches, and oceanfront valley roads. It is the ideal destination for any type of traveler, with a variety of things to do, such as, water sports and outdoor activities, and high quality restaurants. This destination is also home to Punta Espada Golf Club, which is considered one of the best golf courses in the Caribbean. Cap Cana also holds one of the most spectacular marinas in the world, famous and accredited by international journals for its fishing. All of these amenities combined with Cap Cana’s turquoise waters and white sand beaches make it one of the most beautiful and desirable vacation spots in the world.',
+                'address_id' => 5,
+                'min_capacity' => 2,
+                'max_capacity' => 3,
+                'min_rate' => 699,
+                'max_rate' => 799,
+                'rating' => 4,
+                'features' => 'Free WiFi, Restaurant, Swimming Pool',
+                'image_path' => 'sanctuary-cap-cana',
                 'is_recommended' => false
             ]
         ]);

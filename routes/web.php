@@ -66,13 +66,20 @@ Route::middleware('auth:web')->group(function() {
     Route::get('/userhomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
     Route::get('/userhotelsearch', [UserHotelSearchController::class, 'index'])->name('UserHotelSearchRoute');
     Route::get('/hoteldetails/{id}',[UserHotelsController::class, 'hoteldetails']);
+
     Route::get('/paymentdetails/{id}',[UserPaymentDetailsController::class, 'paymentdetails']);
+
     Route::get('/userbooking', [UserBookingController::class, 'index'])->name('UserBookingRoute');
-    Route::get('/userpaymentdetails', [UserPaymentDetailsController::class, 'index'])->name('UserPaymentDetailsRoute');
-    Route::post('/userpaymentdetails', [UserPaymentDetailsController::class, 'storeForm'])->name('UserPaymentDetailsStoreRoute');
-    Route::get('/userpaymentverification', [UserPaymentVerificationController::class, 'index'])->name('UserPaymentVerificationRoute');
+
+    #Route::get('/userpaymentdetails', [UserPaymentDetailsController::class, 'index'])->name('UserPaymentDetailsRoute');
+    #Route::post('/userpaymentdetails', [UserPaymentDetailsController::class, 'storeForm'])->name('UserPaymentDetailsStoreRoute');
+    Route::resource('paymentdetails', UserPaymentDetailsController::class);
+
+    Route::get('/userpaymentverification/{id}', [UserPaymentVerificationController::class, 'verificationDetails'])->name('UserPaymentVerificationRoute');
     Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
+
     Route::get('/useraccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');
+    
     Route::get('/usercontacts', [UserContactsController::class, 'index'])->name('UserContactsRoute');
 });
 

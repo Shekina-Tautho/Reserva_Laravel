@@ -156,7 +156,7 @@
                         <p><strong>Phone No.:</strong> {{ $booking->user->phone_no }}</p>
                         <p><strong>Hotel:</strong> {{ $booking->hotel->name }}</p>
                         <p><strong>Room:</strong> {{ $booking->room->room_type }}</p>
-                        <p><strong>Employee in Charge:</strong> {{ $booking->employee->first_name }} {{ $booking->employee->last_name }}</p>
+                        <p><strong>Employee in Charge:</strong> {{ $booking->employee->first_name ?? ''  }} {{ $booking->employee->last_name ?? '' }}</p>
                         <p><strong>Check-In:</strong> {{ $booking->check_in_date }}</p>
                         <p><strong>Check-Out:</strong> {{ $booking->check_out_date }}</p>
                         <p><strong>Status:</strong> 

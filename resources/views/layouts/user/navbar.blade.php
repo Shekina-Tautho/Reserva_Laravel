@@ -28,7 +28,7 @@
 
         <div class="col-3 d-flex gap-4 justify-content-end px-5">
             @auth
-                <a href="" class="d-flex align-items-center text-decoration-none">
+                <a href="{{ route('UserAccountRoute') }}" class="d-flex align-items-center text-decoration-none">
                     <div class="profile-circle d-flex justify-content-center align-items-center rounded-circle me-2">
                         <i class="bi bi-person-fill text-white"></i>
                     </div>

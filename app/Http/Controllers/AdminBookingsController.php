@@ -66,9 +66,9 @@ class AdminBookingsController extends Controller
             'user_id'       => 'required|exists:users,user_id',
             'hotel_id'      => 'required|exists:hotel,hotel_id',
             'room_id'       => 'required|exists:room,room_id',
-            'employee_id'   => 'required|exists:employee,employee_id',
-            'check_in_date' => ['required', 'date', 'after:today'],
-            'check_out_date'=> ['required', 'date', 'after:check_in_date'],
+            'employee_id'   => 'nullable|exists:employee,employee_id',
+            'check_in_date' => 'required|date',
+            'check_out_date'=> 'required|date|after:check_in_date',
             'status'        => 'required|in:Pending,Confirmed,Cancelled',
             'proof_image'   => 'nullable|image|max:2048',
         ]);

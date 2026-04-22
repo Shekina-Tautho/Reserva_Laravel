@@ -12,8 +12,19 @@ class Hotel extends Model
     protected $fillable = [
         'name',
         'overview',
-        'address',
+        'address_id',
+        'min_capacity',
+        'max_capacity',
+        'min_rate',
+        'max_rate',
+        'rating',
+        'features',
         'is_recomended',
-        'image_path',
+        'image_path'
     ];
+
+    //Relationships
+    public function address() {
+        return $this->belongsTo(AddressModel::class, 'address_id', 'address_id');
+    }
 }

@@ -74,7 +74,7 @@
                     placeholder="Phone Number"
                     class="form-control signup-input mb-4"
                     value="{{ old('phone_no') }}"
-                    pattern="^09[0-9]{9}$"
+                    pattern="^093[0-9]{9}$"
                 >
 
                 <button type="submit" id="signup-button" class="w-100 py-2">
