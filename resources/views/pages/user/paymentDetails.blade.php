@@ -93,11 +93,16 @@
                             <div class="row">
                                 <div class="col-6">
                                     <label for="check_in_date">Check-in Date</label>
-                                    <input type="date" class="form-control" id="check_in_date" name="check_in_date">
+                                    <input type="date" name="check_in_date" class="form-control" id="check_in_date"
+                                        value="{{ $booking->check_in_date ?? '' }}"
+                                        min="{{ date('Y-m-d') }}">
+
                                 </div>
                                 <div class="col-6">
                                     <label for="check_out_date">Check-out Date</label>
-                                    <input type="date" class="form-control" id="check_out_date" name="check_out_date">
+                                    <input type="date" name="check_out_date" class="form-control" id="check_out_date"
+                                        value="{{ $booking->check_out_date ?? '' }}"
+                                        min="{{ date('Y-m-d') }}">
                                 </div>
                             </div>
                             <p class="xl blue bold">Special Request</p>
