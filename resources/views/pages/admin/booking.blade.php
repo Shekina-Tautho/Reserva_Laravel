@@ -115,11 +115,11 @@
 
                 <!-- other fields -->
                 <input type="date" name="check_in_date" class="form-control mb-2" 
-                    value="{{ $booking->check_in_date }}" 
+                    value="{{ $booking->check_in_date ?? '' }}" 
                     min="{{ date('Y-m-d') }}" required>
 
                 <input type="date" name="check_out_date" class="form-control mb-2" 
-                    value="{{ $booking->check_out_date }}" 
+                    value="{{ $booking->check_out_date ?? '' }}" 
                     min="{{ date('Y-m-d') }}" required>
 
                 <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
@@ -226,11 +226,11 @@
 
                 <!-- other fields -->
                 <input type="date" name="check_in_date" class="form-control mb-2" 
-                    value="{{ $booking->check_in_date }}" 
+                    value="{{ $booking->check_in_date ?? '' }}" 
                     min="{{ date('Y-m-d') }}" required>
 
                 <input type="date" name="check_out_date" class="form-control mb-2" 
-                    value="{{ $booking->check_out_date }}" 
+                    value="{{ $booking->check_out_date ?? '' }}" 
                     min="{{ date('Y-m-d') }}" required>
 
                 <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
