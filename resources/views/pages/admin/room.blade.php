@@ -38,7 +38,7 @@
                 <td>{{ $room->room_id }}</td>
                 <td class="ps-3">{{ $room->room_type }}</td>
                 <td>{{ $room->hotel->name ?? 'N/A' }}</td>
-                <td>{{ $room->room_rates }}</td>
+                <td> ${{ $room->room_rates }}</td>
                 <td class="text-center">
                     <div class="d-flex gap-2 justify-content-center">
 
@@ -110,7 +110,7 @@
                 <p><strong>Capacity:</strong> {{ $room->capacity }}</p>
                 <p><strong>No. of Beds:</strong> {{ $room->no_of_beds }}</p>
                 <p><strong>Amenities:</strong> {{ $room->amenities }}</p>
-                <p><strong>Rate:</strong> {{ $room->room_rates }}</p>
+                <p><strong>Rate:</strong> ${{ $room->room_rates }}</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>

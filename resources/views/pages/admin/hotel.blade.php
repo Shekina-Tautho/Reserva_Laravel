@@ -27,6 +27,7 @@
                 <th scope="col" class="ps-3">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Address</th>
+                <th scope="col">Post Code</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -35,7 +36,8 @@
             <tr>
                 <td>{{ $hotel->hotel_id }}</td>
                 <td class="ps-3">{{ $hotel->name }}</td>
-                <td>{{ $hotel->address }}</td>
+                <td>{{ $hotel->address->thoroughfare }}, {{ $hotel->address->locality }}, {{ $hotel->address->administrative_area }}, {{ $hotel->address->country }}</td>
+                <td>{{ $hotel->address->postal_code }}</td>
                 <td class="text-center">
                     <div class="action-icons d-flex gap-2 justify-content-center">
                         <!-- PREVIEW -->
@@ -89,7 +91,8 @@
             </div>
             <div class="modal-body">
                 <p><strong>Name:</strong> {{ $hotel->name }}</p>
-                <p><strong>Address:</strong> {{ $hotel->address }}</p>
+                <p><strong>Address:</strong> {{ $hotel->address->thoroughfare }}, {{ $hotel->address->locality }}, {{ $hotel->address->administrative_area }}, {{ $hotel->address->country }}</p>
+                <p><strong>Postal Code:</strong> {{ $hotel->address->postal_code }}</p>
                 <p><strong>Overview:</strong> {{ $hotel->overview }}</p>
             </div>
             <div class="modal-footer d-flex justify-content-end">
@@ -114,7 +117,7 @@
             <div class="modal-body">
                 <input type="text" name="name" class="form-control mb-2" value="{{ $hotel->name }}" required>
                 <textarea name="overview" class="form-control mb-2">{{ $hotel->overview }}</textarea>
-                <input type="text" name="address" class="form-control mb-2" value="{{ $hotel->address }}" required>
+                <input type="text" name="address" class="form-control mb-2" value="{{ $hotel->address->thoroughfare }}, {{ $hotel->address->locality }}, {{ $hotel->address->administrative_area }}, {{ $hotel->address->country }} {{ $hotel->address->postal_code }}" required>
             </div>
             <div class="modal-footer d-flex justify-content-end">
                 <button class="btn btn-primary">Update</button>
