@@ -64,7 +64,12 @@ Route::prefix('/admin')->middleware('employee.access')->group(function() {
 # User Pages (protected by user guard)
 Route::middleware('auth:web')->group(function() {
     Route::get('/userhomepage', [UserHomepageController::class, 'index'])->name('user.homepage');
+
     Route::get('/userhotelsearch', [UserHotelSearchController::class, 'index'])->name('UserHotelSearchRoute');
+    
+    #FILTER
+    Route::get('/userhotelsearch/filter', [UserHotelSearchController::class, 'filter'])->name('UserHotelFilterRoute');
+
     Route::get('/hoteldetails/{id}',[UserHotelsController::class, 'hoteldetails']);
 
     Route::get('/paymentdetails/{id}',[UserPaymentDetailsController::class, 'paymentdetails']);

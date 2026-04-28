@@ -18,6 +18,16 @@
                 <div class="img-cont d-flex justify-content-center">
                     <img src="{{ asset('/images/homepage-banner.png') }}" alt="outdoor hotel" class="img-fluid rounded">
 
+                    <form action="{{ route('UserHotelSearchRoute') }}" method="GET" class="search-box container shadow-lg rounded-4 bg-white p-4 position-absolute top-100 start-50 translate-middle">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request()->get('search') }}">
+                            <button type="submit" class="btn">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!--
                     <form id="searchForm" action="hotels.php" method="GET" class="search-box container shadow-lg rounded-4 bg-white p-4 position-absolute top-100 start-50 translate-middle">
                         <div class="row text-center">
                             <div class="col-md-3 col-6 mb-3 mb-md-0 border-end">
@@ -38,6 +48,7 @@
                             </div>
                         </div>
                     </form>
+                    -->
                 </div>
 
                 <div class="d-flex align-items-center justify-content-center flex-column py-5 mt-5">

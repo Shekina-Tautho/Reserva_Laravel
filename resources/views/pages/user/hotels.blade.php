@@ -22,28 +22,54 @@
                 </div>
 
                 <div class="col-9">
-                    <div class="white-box text-center p-4 container">
+                    <div class="white-box p-4 container">
                         <div class="row">
-                            <!-- Location -->
+                            <form action="{{ route('UserHotelSearchRoute') }}" method="GET">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request()->get('search') }}">
+                                    <button type="submit" class="btn">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            
+
+                            <!--
+                            <form id="searchBar" action="#">
+                                <div class="search-group">
+                                    <input type="text" name="searchHotel" placeholder="What are you looking for?">
+                                </div>
+                            </form>
+                            -->
+        
+                            <!--
+                            <div class="search-wrapper">
+                                <div class="search-box">hi</div>
+                            </div>-->
+                            
+
+
+                            <!--
                             <div class="col-3 border-right d-flex align-items-center">
                                 <i class="bi bi-geo-alt me-2"></i>
                                 <input type="text" id="locationInput" class="search-input w-100" placeholder="Manila, Luzon">
                             </div>
-                            <!-- Check-in -->
+                            
                             <div class="col-3 border-right d-flex align-items-center">
                                 <i class="bi bi-calendar-week me-2"></i>
                                 <input type="date" id="checkInInput" class="search-input w-100">
                             </div>
-                            <!-- Check-out -->
+                            
                             <div class="col-3 border-right d-flex align-items-center">
                                 <i class="bi bi-calendar-week me-2"></i>
                                 <input type="date" id="checkOutInput" class="search-input w-100">
                             </div>
-                            <!-- Guests/Rooms -->
+                            
                             <div class="col-3 d-flex align-items-center">
                                 <i class="bi bi-people-fill me-2"></i>
                                 <input type="text" id="guestsRoomsInput" class="search-input w-100" placeholder="2 Guests, 1 Room">
                             </div>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -51,11 +77,52 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="col-5 d-flex justify-content-end">
+        <div class="col-5">
             <div class="d-flex flex-column align-items-end">
-                <form method="GET" action="hotels.php" class="filter-container mt-4 mx-3 py-4 px-4 filterText" style="height:auto;">
+                <div class="filter-container mt-4 mx-3 py-4 px-4 filterText" style="height:auto;">
                     <p class="sortText boldText">Filter by:</p>
-                    <!-- Budget -->
+
+                    <form action="{{ route('UserHotelFilterRoute') }}" method="GET">
+                        <p>Rate: </p>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1">$</span>
+                            <input type="number" class="form-control" placeholder="Minimum" name="min_rate" step="100" min="0">
+                            <span class="input-group-text border-0 bg-white">-</span>
+                            <span class="input-group-text" id="basic-addon1">$</span>
+                            <input type="number" class="form-control" placeholder="Maximum" name="max_rate" step="100" min="0">
+                        </div>
+                        <p class="mt-4">Popular Filters</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="free_breakfast" id="free_breakfast" name="free_breakfast">
+                            <label class="form-check-label" for="free_breakfast">Free Breakfast</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="free_wifi" id="free_wifi" name="free_wifi">
+                            <label class="form-check-label" for="free_wifi">Free WiFi</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="parking_space" id="parking_space" name="parking_space">
+                            <label class="form-check-label" for="parking_space">Parking Space</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="private_balcony" id="private_balcony" name="private_balcony">
+                            <label class="form-check-label" for="private_balcony">Private Balcony</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="restaurant" id="restaurant" name="restaurant">
+                            <label class="form-check-label" for="restaurant">Restaurant</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="swimming_pool" id="swimming_pool" name="swimming_pool">
+                            <label class="form-check-label" for="swimming_pool">Swimming Pool</label>
+                        </div>
+                        <!--<button type="submit" class="btn btn-primary">Filter</button>-->
+                        <div class="mt-4">
+                            <button type="submit" class="applyBtn py-2 w-100">Filter</button>
+                        </div>
+                    </form>
+
+                    <!--
                     <p class="py-1">Budget:</p>
                     <div class="d-flex align-items-center gap-2 mt-0">
                         <div class="input-group" style="width: 45%;">
@@ -68,17 +135,11 @@
                             <input type="number" step="100" name="maxPrice" placeholder="Maximum" class="form-control price-input px-2">
                         </div>
                     </div>
-                    <!-- Tags -->
-                    <p class="mt-4">Popular Filters</p>
-                    <div class="d-flex flex-column gap-1">
-                        
-                    </div>
-                    <div class="mt-4">
-                        <button type="submit" class="applyBtn py-2 w-100">Apply</button>
-                    </div>
-                </form>
+                    -->
+                </div>
             </div>
         </div>
+        
 
         <!-- Right Side -->
         <div class="col-7">
@@ -98,9 +159,10 @@
                     <option value="popular">Most Popular</option>
                 </select>
             </div>
+
             <!-- Hotels -->
             <div class="hotels-section py-4">
-                @if (DB::table('hotel')->exists())
+                @if ($hotels->count() > 0)
                     @foreach ($hotels as $hotel)
                         <div class="card col-9 mb-3">
                             <div class="card-body">
