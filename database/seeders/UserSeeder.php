@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
             [
                 'last_name' => 'Dio',
                 'first_name' => 'Elyssa',
-                'phone_no' => '09123456789',
+                'phone_no' => '093123456789',
                 'email' => 's1010290@usls.edu.ph',
                 'password' => bcrypt('123')
             ]

@@ -69,6 +69,8 @@ Route::middleware('auth:web')->group(function() {
     
     #FILTER
     Route::get('/userhotelsearch/filter', [UserHotelSearchController::class, 'filter'])->name('UserHotelFilterRoute');
+    #SORT
+    Route::get('/userhotelsearch/sort', [UserHotelSearchController::class, 'sort'])->name('UserHotelSortRoute');
 
     Route::get('/hoteldetails/{id}',[UserHotelsController::class, 'hoteldetails']);
 
@@ -84,6 +86,8 @@ Route::middleware('auth:web')->group(function() {
     Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
 
     Route::get('/useraccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');
+
+    Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
     
     Route::get('/usercontacts', [UserContactsController::class, 'index'])->name('UserContactsRoute');
 });

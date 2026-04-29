@@ -1,4 +1,5 @@
 @extends('layouts.user.content')
+@include('layouts.user.navbar')
 
 @section('title', 'Hotels')
 
@@ -9,10 +10,6 @@
 
 <div class="container-fluid main-div">
     <div class="row">
-        <!-- Navbar -->
-        <div class="col-12">
-            @include('layouts.user.navbar')
-        </div>
 
         <!-- Header Image + Search Box -->
         <div class="container-fluid image-container">
@@ -148,8 +145,39 @@
             </p>
             <!-- Sorting -->
             <div class="d-flex gap-2 mb-3">
-                <img src="{{ asset('/images/sort icon.png') }}" alt="sort icon" class="sortIcon mt-1">
+                <!--<img src="{{ asset('/images/sort icon.png') }}" alt="sort icon" class="sortIcon mt-1">-->
                 <p class="sortText boldText mt-1">Sort by:</p>
+                <form action="{{ route('UserHotelSortRoute') }}" method="GET">
+                    <div class="input-group">
+                        <select id="sort_by" name="sort_by" class="form-select w-auto">
+                            <option value="no_category">Select a Category</option>
+                            <option value="name_asc">Name: A to Z</option>
+                            <option value="name_desc">Name: Z to A</option>
+                            <option value="price_asc">Price: Low to High</option>
+                            <option value="price_desc">Price: High to Low</option>
+                            <option value="rating_asc">Rating: Low to High</option>
+                            <option value="rating_desc">Rating: High to Low</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Sort</button>
+                    </div>
+                    
+                </form>
+
+                <!--
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        Select a Category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+                        <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+                        <li><a class="dropdown-item" href="#">Rating: Low to High</a></li>
+                        <li><a class="dropdown-item" href="#">Rating: High to Low</a></li>
+                    </ul>
+                </div>
+                -->
+
+                <!--
                 <select id="sortHotels" class="form-select w-auto">
                     <option value="default">Recommended</option>
                     <option value="price_asc">Price: Low to High</option>
@@ -158,6 +186,8 @@
                     <option value="rating_asc">Rating: Low to High</option>
                     <option value="popular">Most Popular</option>
                 </select>
+                -->
+
             </div>
 
             <!-- Hotels -->

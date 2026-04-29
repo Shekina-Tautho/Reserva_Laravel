@@ -1,4 +1,5 @@
 @extends('layouts.user.content')
+@include('layouts.user.navbar')
 
 @section('title', 'Homepage')
 
@@ -9,9 +10,7 @@
 
 <div class="container-fluid main-div">
     <div class="row">
-        <div class="col-12">
-            @include('layouts.user.navbar')
-        </div>
+        
 
         <div class="col-12 mid-div d-flex flex-column align-items-center">
             <div class="col-10 mt-5 position-relative">

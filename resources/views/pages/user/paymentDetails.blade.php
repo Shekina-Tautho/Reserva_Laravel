@@ -1,4 +1,5 @@
 @extends('layouts.user.content')
+@include('layouts.user.navbar')
 
 @section('title', 'Payment Details')
 
@@ -9,9 +10,6 @@
 
 <div class="container-fluid main-container">
     <div class="row">
-        <div class="col-12">
-            @include('layouts.user.navbar')
-        </div>
 
         @if ($errors->any())
             <div class="alert alert-danger">

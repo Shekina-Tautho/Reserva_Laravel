@@ -1,4 +1,5 @@
 @extends('layouts.user.content')
+@include('layouts.user.navbar')
 
 @section('title', $hotels->name)
 
@@ -9,9 +10,7 @@
 
 <div class="container-fluid main-div">
     <div class="row">
-        <div class="col-12">
-            @include('layouts.user.navbar')
-        </div>
+        
     <div class="col-12 d-flex align-items-center flex-column">
         <div class="col-10 mt-3">
             <div class="base-container p-5 mb-5">

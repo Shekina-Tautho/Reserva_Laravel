@@ -29,41 +29,67 @@ class UserHotelSearchController extends Controller
 
     public function filter() 
     {
-        $query = Hotel::query();
+        $hotel = Hotel::query();
 
         if(request()->filled('min_rate')) {
-            $query->where('min_rate', '>=', request()->min_rate);
+            $hotel->where('min_rate', '>=', request()->min_rate);
         }
 
         if(request()->filled('max_rate')) {
-            $query->where('max_rate', '<=', request()->max_rate);
+            $hotel->where('max_rate', '<=', request()->max_rate);
         }
 
         if(request()->has('free_breakfast')) {
-            $query->where('features', 'like', '%Free Breakfast%');
+            $hotel->where('features', 'like', '%Free Breakfast%');
         }
 
         if(request()->has('free_wifi')) {
-            $query->where('features', 'like', '%Free WiFi%');
+            $hotel->where('features', 'like', '%Free WiFi%');
         }
 
         if(request()->has('parking_space')) {
-            $query->where('features', 'like', '%Parking Space%');
+            $hotel->where('features', 'like', '%Parking Space%');
         }
 
         if(request()->has('private_balcony')) {
-            $query->where('features', 'like', '%Private Balcony%');
+            $hotel->where('features', 'like', '%Private Balcony%');
         }
 
         if(request()->has('restaurant')) {
-            $query->where('features', 'like', '%Restaurant%');
+            $hotel->where('features', 'like', '%Restaurant%');
         }
 
         if(request()->has('swimming_pool')) {
-            $query->where('features', 'like', '%Swimming Pool%');
+            $hotel->where('features', 'like', '%Swimming Pool%');
         }
 
-        $hotels = $query->get();
+        $hotels = $hotel->get();
+        return view('pages.user.hotels', compact('hotels'));
+    }
+
+    public function sort(Request $request) 
+    {
+        $hotels = Hotel::query();
+
+        if($request->filled('sort_by')) {
+            if($request->sort_by == 'no_category') {
+                $hotels->orderBy('id', 'asc');
+            } elseif($request->sort_by == 'name_asc') {
+                $hotels->orderBy('name', 'asc');
+            } elseif($request->sort_by == 'name_desc') {
+                $hotels->orderBy('name', 'desc');
+            } elseif($request->sort_by == 'rating_desc') {
+                $hotels->orderBy('rating', 'desc');
+            } elseif($request->sort_by == 'rating_asc') {
+                $hotels->orderBy('rating', 'asc');
+            } elseif($request->sort_by == 'price_desc') {
+                $hotels->orderBy('min_rate', 'desc');
+            } elseif($request->sort_by == 'price_asc') {
+                $hotels->orderBy('min_rate', 'asc');
+            }
+        }
+
+        $hotels = $hotels->get();
         return view('pages.user.hotels', compact('hotels'));
     }
 

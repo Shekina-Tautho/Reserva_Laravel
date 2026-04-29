@@ -23,6 +23,7 @@
         <div class="col-6 d-flex justify-content-center gap-5">
             <a class="tabs {{ request()->is('userhomepage') ? 'active' : '' }}" href="{{ route('user.homepage') }}">Home</a>
             <a class="tabs {{ request()->is('userhotelsearch') ? 'active' : '' }}" href="{{ route('UserHotelSearchRoute') }}">Hotels</a>
+            <a class="tabs {{ request()->is('userbookings') ? 'active' : '' }}" href="{{ route('UserReservationsRoute') }}">Bookings</a>
             <a class="tabs {{ request()->is('usercontacts') ? 'active' : '' }}" href="{{ route('UserContactsRoute') }}">Contacts</a>
         </div>
 
