@@ -84,11 +84,10 @@ Route::middleware('auth:web')->group(function() {
 
     Route::get('/userpaymentverification/{id}', [UserPaymentVerificationController::class, 'verificationDetails'])->name('UserPaymentVerificationRoute');
     Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
+    #Route::post('/bookings/store', [AdminBookingsController::class, 'store'])->name('bookings.store');
+    Route::post('/userreservations/store', [UserReservationsController::class, 'store'])->name('UserReservationsStoreRoute');
 
     Route::get('/useraccount', [UserAccountController::class, 'index'])->name('UserAccountRoute');
-
-    Route::get('/userreservations', [UserReservationsController::class, 'index'])->name('UserReservationsRoute');
-    
     Route::get('/usercontacts', [UserContactsController::class, 'index'])->name('UserContactsRoute');
 });
 

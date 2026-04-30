@@ -20,53 +20,201 @@
             <p class="JaneDoe px-3 pt-3">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
         </div>
 
-        <div class="col-9 info d-flex flex-column align-items-center">
+        <div class="col-10 info d-flex flex-column align-items-center">
             <p class="boldText large mt-5">MY BOOKINGS</p>
 
-            <div>
-                <table class="table mt-3">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Hotel</th>
-                            <th scope="col">Room</th>
-                            <th scope="col">Check-In</th>
-                            <th scope="col">Check-Out</th>
-                            <th scope="col">Status</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($bookings as $booking)
-                        <tr>
-                            <th scope="row">{{ $booking->booking_id }}</th>
-                            <td>{{ $booking->hotel->name }}</td>
-                            <td>{{ $booking->room->room_type }}</td>
-                            <td>{{ $booking->check_in_date }}</td>
-                            <td>{{ $booking->check_out_date }}</td>
-                            <td>{{ $booking->status }}</td>
-                            <td class="text-center">
-                                <div class="action-icons d-flex gap-2 justify-content-center">
-
-                                    <!-- PREVIEW -->
-                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
-                                        <img src="{{ asset('/images/previewicon.png') }}" alt="">
-                                    </button>
-
-                                    <!-- EDIT -->
-                                    <button class="btn" data-bs-toggle="modal" data-bs-target="#editBookingModal{{ $booking->booking_id }}">
-                                        <img src="{{ asset('/images/editicon.png') }}" alt="">
-                                    </button>
+            <!--BOOKING CARDS-->
+            <div class="container">
+                <div class="row">
+                    @foreach($bookings as $booking)
+                        @if($booking->proof_image_path == null)
+                            <div class="col-4 mb-4">
+                                <div class="card border-danger h-100">
+                                    <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
+                                    <div class="card-body">
+                                        <p class="card-text fw-bold">Status</p>
+                                        <p class="card-text">{{ $booking->status }}</p>
+                                        <p class="card-text fw-bold">Hotel</p>
+                                        <p class="card-text">{{ $booking->hotel->name }}</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-In Date</p>
+                                                <p class="card-text">{{ $booking->check_in_date }}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-Out Date</p>
+                                                <p class="card-text">{{ $booking->check_out_date }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                            View
+                                        </button>
+                                    </div>
                                 </div>
-                            </td>
-                            
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                            </div>
+                        @elseif($booking->proof_image_path != null && $booking->status == 'Pending')
+                            <div class="col-4 mb-4">
+                                <div class="card border-warning h-100">
+                                    <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
+                                    <div class="card-body">
+                                        <p class="card-text fw-bold">Status</p>
+                                        <p class="card-text">{{ $booking->status }}</p>
+                                        <p class="card-text fw-bold">Hotel</p>
+                                        <p class="card-text">{{ $booking->hotel->name }}</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-In Date</p>
+                                                <p class="card-text">{{ $booking->check_in_date }}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-Out Date</p>
+                                                <p class="card-text">{{ $booking->check_out_date }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                            View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif($booking->proof_image_path != null && $booking->status == 'Verified')
+                            <div class="col-4 mb-4">
+                                <div class="card border-success h-100">
+                                    <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
+                                    <div class="card-body">
+                                        <p class="card-text fw-bold">Status</p>
+                                        <p class="card-text">{{ $booking->status }}</p>
+                                        <p class="card-text fw-bold">Hotel</p>
+                                        <p class="card-text">{{ $booking->hotel->name }}</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-In Date</p>
+                                                <p class="card-text">{{ $booking->check_in_date }}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-Out Date</p>
+                                                <p class="card-text">{{ $booking->check_out_date }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                            View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            @elseif($booking->proof_image_path != null && $booking->status == 'Rejected')
+                                <div class="col-4 mb-4">
+                                <div class="card border-secondary h-100">
+                                    <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
+                                    <div class="card-body">
+                                        <p class="card-text fw-bold">Status</p>
+                                        <p class="card-text">{{ $booking->status }}</p>
+                                        <p class="card-text fw-bold">Hotel</p>
+                                        <p class="card-text">{{ $booking->hotel->name }}</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-In Date</p>
+                                                <p class="card-text">{{ $booking->check_in_date }}</p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="card-text fw-bold">Check-Out Date</p>
+                                                <p class="card-text">{{ $booking->check_out_date }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                            View
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+
+<!--MODAL-->
+@foreach($bookings as $booking)
+<div class="modal fade" id="previewBookingModal{{ $booking->booking_id }}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header fw-bold">Booking Details</div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fw-bold">Booking ID</p>
+                        <p>#{{ $booking->booking_id }}</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="fw-bold">Status</p>
+                        <p>{{ $booking->status }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fw-bold">Hotel</p>
+                        <p>{{ $booking->hotel->name }}</p>
+                    </div>
+
+                    <div class="col-6">
+                        <p class="fw-bold">Room</p>
+                        <p>{{ $booking->room->room_type }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fw-bold">Check-In Date</p>
+                        <p>{{ $booking->check_in_date }}</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="fw-bold">Check-Out Date</p>
+                        <p>{{ $booking->check_out_date }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                        <p class="fw-bold">Reserved Under</p>
+                        <p>{{ $booking->user->first_name }} {{ $booking->user->last_name }}</p>
+                </div>
+
+                <div class="row">
+                    <p class="fw-bold">Proof of Payment</p>
+                    @if($booking->proof_image_path)
+                        <img src="{{ asset('storage/' . $booking->proof_image_path) }}" alt="Proof of Payment" class="img-fluid">
+                    @else
+                        <form action="{{ route('UserReservationsStoreRoute') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="input-group">
+                                <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                                </div>
+                            </div>
+                            <!--HIDDEN-->
+                            <input type="hidden" name="booking_id" value="{{ $booking->booking_id }}">
+                        </form>
+                    @endif
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+@endforeach
 
 @endsection
