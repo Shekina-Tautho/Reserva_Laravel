@@ -23,7 +23,7 @@
                         <div class="row">
                             <form action="{{ route('UserHotelSearchRoute') }}" method="GET">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request()->get('search') }}">
+                                    <input type="text" class="form-control border-0" placeholder="Search" name="search" value="{{ request()->get('search') }}" style="box-shadow: none; outline: none;">
                                     <button type="submit" class="btn">
                                         <i class="bi bi-search"></i>
                                     </button>

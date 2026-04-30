@@ -14,42 +14,74 @@
     <link rel="stylesheet" href="{{ asset('/css/navbar.css') }}"/>
 </head>
 <body>
+
 <div class="container-fluid">
-    <div class="row mt-4 mb-4 align-items-end">
-        <div class="col-3 text-end">
-            <img src="{{ asset('/images/logo.png') }}" alt="Reserva logo">
+    <div>
+        <div class="row p-lg-4 p-2">
+            <!--Laravel Logo-->
+            <div class="col-3 align-items-center justify-content-center">
+                <img src="{{ asset('/images/laravel_logo.svg') }}" alt="Reserva logo" class="img-fluid">
+            </div>
+            <!--Navigation Links-->
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <nav class="mt-lg-3">
+                    <ul class="nav-links">
+                        <li><a class="tabs {{ request()->is('userhomepage') ? 'active' : '' }}" href="{{ route('user.homepage') }}">Home</a></li>
+                        <li><a class="tabs {{ request()->is('userhotelsearch') ? 'active' : '' }}" href="{{ route('UserHotelSearchRoute') }}">Hotels</a></li>
+                        <li><a class="tabs {{ request()->is('userreservations') ? 'active' : '' }}" href="{{ route('UserReservationsRoute') }}">Bookings</a></li>
+                        <li><a class="tabs {{ request()->is('usercontacts') ? 'active' : '' }}" href="{{ route('UserContactsRoute') }}">Contacts</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!--User Name & Icon-->
+            <div class="col-3 d-flex justify-content-end d-lg-flex d-md-flex d-none px-5 gap-4">
+                @auth
+                    <a href="{{ route('UserAccountRoute') }}" class="d-flex align-items-center text-decoration-none">
+                        <div class="profile-circle d-flex justify-content-center align-items-center rounded-circle me-2">
+                            <i class="bi bi-person-fill text-white"></i>
+                        </div>
+                        <span class="text-dark">{{ Auth::user()->first_name }}</span>
+                    </a>
+                @else
+                    <a class="login-btn pb-1" href="">Log In</a>
+                    <a class="btn signup-btn p-2 px-4" href="">Sign Up</a>
+                @endauth
+            </div>
         </div>
 
-        <div class="col-6 d-flex justify-content-center gap-5">
-            <a class="tabs {{ request()->is('userhomepage') ? 'active' : '' }}" href="{{ route('user.homepage') }}">Home</a>
-            <a class="tabs {{ request()->is('userhotelsearch') ? 'active' : '' }}" href="{{ route('UserHotelSearchRoute') }}">Hotels</a>
-            <a class="tabs {{ request()->is('userbookings') ? 'active' : '' }}" href="{{ route('UserReservationsRoute') }}">Bookings</a>
-            <a class="tabs {{ request()->is('usercontacts') ? 'active' : '' }}" href="{{ route('UserContactsRoute') }}">Contacts</a>
-        </div>
-
-        <div class="col-3 d-flex gap-4 justify-content-end px-5">
-            @auth
-                <a href="{{ route('UserAccountRoute') }}" class="d-flex align-items-center text-decoration-none">
-                    <div class="profile-circle d-flex justify-content-center align-items-center rounded-circle me-2">
-                        <i class="bi bi-person-fill text-white"></i>
-                    </div>
-                    <span class="text-dark">{{ Auth::user()->first_name }}</span>
-                </a>
-            @else
-                <a class="login-btn pb-1" href="">Log In</a>
-                <a class="btn signup-btn p-2 px-4" href="">Sign Up</a>
-            @endauth
+        <!--MOBILE NAVBAR-->
+        <div class="row vw-100 d-lg-none"> 
+            <nav class="fixed-bottom">
+                <ul class="mobile-nav d-flex justify-content-around align-items-center bg-white shadow p-2 m-0">
+                    <li>
+                        <a class="{{ request()->is('userhomepage') ? 'active' : '' }}" href="{{ route('user.homepage') }}">
+                            <i class="bi bi-house-door-fill" style="color: #0057AB;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ request()->is('userhotelsearch') ? 'active' : '' }}" href="{{ route('UserHotelSearchRoute') }}">
+                            <i class="bi bi-house-fill" style="color: #0057AB;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ request()->is('userreservations') ? 'active' : '' }}" href="{{ route('UserReservationsRoute') }}">
+                            <i class="bi bi-calendar-week-fill" style="color: #0057AB;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ request()->is('usercontacts') ? 'active' : '' }}" href="{{ route('UserContactsRoute') }}">
+                            <i class="bi bi-telephone-fill" style="color: #0057AB;"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('UserAccountRoute') }}" class="d-flex align-items-center text-decoration-none">
+                            <i class="bi bi-person-fill" style="color: #0057AB;"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
-
-<style>
-.profile-circle {
-    width: 35px;
-    height: 35px;
-    background-color: #0057AB;
-    font-size: 1.2rem;
-}
-</style>
 </body>
 </html>

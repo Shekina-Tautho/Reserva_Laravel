@@ -10,6 +10,52 @@ a {
     text-decoration: none;
 }
 
+.profile-circle {
+    width: 35px;
+    height: 35px;
+    background-color: #0057AB;
+    font-size: 1.2rem;
+}
+
+/*ADDED*/
+
+.hide-mobile {
+    @media screen and (max-width: 576px) {
+        display: none !important;
+    }
+}
+
+nav {
+    font-family: "Poppins", sans-serif;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+    @media screen and (max-width: 576px) {
+        display: none;
+    }
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #969696;
+}
+
+.mobile-nav {
+    display: none;
+    list-style: none;
+    @media screen and (max-width: 576px) {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+}
+
 .tabs {
     font-size: 1.05em;
     color: black;

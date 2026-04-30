@@ -192,17 +192,31 @@
                     @if($booking->proof_image_path)
                         <img src="{{ asset('storage/' . $booking->proof_image_path) }}" alt="Proof of Payment" class="img-fluid">
                     @else
-                        <form action="{{ route('UserReservationsStoreRoute') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="input-group">
-                                <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                        @if($booking->status == 'Verified' || $booking->status == 'Rejected')
+                            <form action="{{ route('UserReservationsStoreRoute') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="input-group">
+                                    <input type="file" name="proof_image" class="form-control mb-2" accept="image/*" disabled>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary mb-2" disabled>Upload</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <!--HIDDEN-->
-                            <input type="hidden" name="booking_id" value="{{ $booking->booking_id }}">
-                        </form>
+                                <!--HIDDEN-->
+                                <input type="hidden" name="booking_id" value="{{ $booking->booking_id }}">
+                            </form>
+                        @else
+                            <form action="{{ route('UserReservationsStoreRoute') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="input-group">
+                                    <input type="file" name="proof_image" class="form-control mb-2" accept="image/*" required>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                                    </div>
+                                </div>
+                                <!--HIDDEN-->
+                                <input type="hidden" name="booking_id" value="{{ $booking->booking_id }}">
+                            </form>
+                        @endif
                     @endif
                 </div>
 
