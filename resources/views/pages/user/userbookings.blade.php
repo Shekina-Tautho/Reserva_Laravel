@@ -24,12 +24,12 @@
             <p class="boldText large mt-5">MY BOOKINGS</p>
 
             <!--BOOKING CARDS-->
-            <div class="container">
+            <div class="container mt-4">
                 <div class="row">
                     @foreach($bookings as $booking)
                         @if($booking->proof_image_path == null)
-                            <div class="col-4 mb-4">
-                                <div class="card border-danger h-100">
+                            <div class="col-lg-4 col-12 mb-4">
+                                <div class="card border-danger shadow border-3 h-100" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
                                     <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
                                     <div class="card-body">
                                         <p class="card-text fw-bold">Status</p>
@@ -48,15 +48,15 @@
                                         </div>
                                     </div>
                                     <div class="card-footer bg-transparent">
-                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                        <button class="btn btn-danger float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
                                             View
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         @elseif($booking->proof_image_path != null && $booking->status == 'Pending')
-                            <div class="col-4 mb-4">
-                                <div class="card border-warning h-100">
+                            <div class="col-lg-4 col-12 mb-4">
+                                <div class="card border-warning shadow border-3 h-100" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
                                     <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
                                     <div class="card-body">
                                         <p class="card-text fw-bold">Status</p>
@@ -75,15 +75,15 @@
                                         </div>
                                     </div>
                                     <div class="card-footer bg-transparent">
-                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                        <button class="btn btn-warning float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
                                             View
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         @elseif($booking->proof_image_path != null && $booking->status == 'Verified')
-                            <div class="col-4 mb-4">
-                                <div class="card border-success h-100">
+                            <div class="col-lg-4 col-12 mb-4">
+                                <div class="card border-success shadow border-3 h-100" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
                                     <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
                                     <div class="card-body">
                                         <p class="card-text fw-bold">Status</p>
@@ -102,15 +102,15 @@
                                         </div>
                                     </div>
                                     <div class="card-footer bg-transparent">
-                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                        <button class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
                                             View
                                         </button>
                                     </div>
                                 </div>
                             </div>
                             @elseif($booking->proof_image_path != null && $booking->status == 'Rejected')
-                                <div class="col-4 mb-4">
-                                <div class="card border-secondary h-100">
+                                <div class="col-lg-4 col-12 mb-4">
+                                <div class="card border-secondary shadow border-3 h-100" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
                                     <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
                                     <div class="card-body">
                                         <p class="card-text fw-bold">Status</p>
@@ -129,7 +129,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer bg-transparent">
-                                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
+                                        <button class="btn btn-secondary float-end" data-bs-toggle="modal" data-bs-target="#previewBookingModal{{ $booking->booking_id }}">
                                             View
                                         </button>
                                     </div>

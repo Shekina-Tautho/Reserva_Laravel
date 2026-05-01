@@ -130,3 +130,9 @@
   background-color: #004080; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
 }
+
+.mobile-display {
+    @media only screen and (max-width: 576px) {
+        display: none !important;
+    }
+}

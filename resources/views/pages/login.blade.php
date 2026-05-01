@@ -52,7 +52,7 @@
 
             <p class="register-p">
                 Not a member? 
-                <a href="{{ route('register') }}">Register Now</a>
+                <a href="{{ route('register') }}" style="color: #0057AB; text-decoration: none; font-weight: 600">Register Now</a>
             </p>
 
         </div>
