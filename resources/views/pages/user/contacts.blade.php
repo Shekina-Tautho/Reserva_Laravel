@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="{{ asset('/css/contacts.css') }}"/>
 
 <div class="container-fluid">
-    <div class="row">
+
+    <div class="row mobile-display">
         <div class=" col-12 d-flex flex-column align-items-center justify-content-center main-div">
             <div class="col-12 d-flex align-items-center justify-content-center flex-column mb-3">
                 <div class="d-flex align-items-center flex-column text-center py-5">
@@ -52,4 +53,45 @@
     </div>
 </div>
 
+<div class="container-fluid d-lg-none ">
+    <!--FOR MOBILE VIEW-->
+    <div class="row py-5">
+        <p class="d-flex justify-content-center xl bold blue">Contact Us</p>
+        <text class="d-flex justify-content-center">Have questions or special requests?</text>
+        <text class="d-flex justify-content-center">Reach out to us anytime —</text>
+        <text class="d-flex justify-content-center">we’re here to make your stay memorable</text>
+    </div>
+    <div class="row p-4 mb-2">
+        <div class="col-4 d-flex justify-content-center align-items-center">
+            <i class="bi bi-telephone" style="font-size: 3.5rem; color: #0057AB;"></i>
+        </div>
+        <div class="col-8">
+            <text class="bold large mt-4">Make a Call<br></text>
+            <text>For immediate assistance with your reservations or inquiries.<br></text>
+            <text class="blue">support@reserva.com<br></text>
+        </div>
+    </div>
+
+    <div class="row p-4 mb-2">
+        <div class="col-4 d-flex justify-content-center align-items-center">
+            <i class="bi bi-envelope" style="font-size: 3.5rem; color: #0057AB;"></i>
+        </div>
+        <div class="col-8">
+            <text class="bold large mt-4">Send a Mail<br></text>
+            <text>For booking confirmations, feedback, or partnership inquiries.<br></text>
+            <text class="blue">+63 927 456 8910<br></text>
+        </div>
+    </div>
+
+    <div class="row p-4">
+        <div class="col-4 d-flex justify-content-center align-items-center">
+            <i class="bi bi-chat" style="font-size: 3.5rem; color: #0057AB;"></i>
+        </div>
+        <div class="col-8">
+            <text class="bold large mt-4">Chat with Us<br></text>
+            <text>Instantly connect with our customer core team for quick help.<br></text>
+            <text class="blue">chat.reserva.com<br></text>
+        </div>
+    </div>
+</div>
 @endsection

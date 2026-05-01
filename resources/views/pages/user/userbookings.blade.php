@@ -27,7 +27,7 @@
             <div class="container mt-4">
                 <div class="row">
                     @foreach($bookings as $booking)
-                        @if($booking->proof_image_path == null)
+                        @if($booking->proof_image_path == null && $booking->status == 'Pending')
                             <div class="col-lg-4 col-12 mb-4">
                                 <div class="card border-danger shadow border-3 h-100" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
                                     <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @elseif($booking->proof_image_path != null && $booking->status == 'Verified')
+                        @elseif($booking->status == 'Confirmed')
                             <div class="col-lg-4 col-12 mb-4">
                                 <div class="card border-success shadow border-3 h-100" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
                                     <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @elseif($booking->proof_image_path != null && $booking->status == 'Rejected')
+                            @elseif($booking->status == 'Cancelled')
                                 <div class="col-lg-4 col-12 mb-4">
                                 <div class="card border-secondary shadow border-3 h-100" style="border-bottom: 0px; border-left: 0px; border-right: 0px;">
                                     <div class="card-header bg-transparent fw-bold">Booking ID #{{ $booking->booking_id }}</div>
@@ -192,13 +192,13 @@
                     @if($booking->proof_image_path)
                         <img src="{{ asset('storage/' . $booking->proof_image_path) }}" alt="Proof of Payment" class="img-fluid">
                     @else
-                        @if($booking->status == 'Verified' || $booking->status == 'Rejected')
+                        @if($booking->status == 'Confirmed' || $booking->status == 'Cancelled')
                             <form action="{{ route('UserReservationsStoreRoute') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="input-group">
                                     <input type="file" name="proof_image" class="form-control mb-2" accept="image/*" disabled>
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary mb-2" disabled>Upload</button>
+                                        <button type="submit" class="btn mb-2" style="background-color: #0057AB; color: white;" disabled>Upload</button>
                                     </div>
                                 </div>
                                 <!--HIDDEN-->
@@ -208,9 +208,9 @@
                             <form action="{{ route('UserReservationsStoreRoute') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="input-group">
-                                    <input type="file" name="proof_image" class="form-control mb-2" accept="image/*" required>
+                                    <input type="file" name="proof_image" class="form-control mb-2" accept="image/*" style="box-shadow: none; outline: none;" required>
                                     <div class="input-group-append">
-                                        <button type="submit" class="btn btn-primary mb-2">Upload</button>
+                                        <button type="submit" class="btn mb-2" style="background-color: #0057AB; color: white;">Upload</button>
                                     </div>
                                 </div>
                                 <!--HIDDEN-->
