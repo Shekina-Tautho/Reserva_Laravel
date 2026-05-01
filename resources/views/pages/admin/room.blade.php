@@ -83,9 +83,12 @@
 
                 <input type="text" name="room_type" class="form-control mb-2" placeholder="Room Type" required>
                 <input type="text" name="capacity" class="form-control mb-2" placeholder="Capacity">
-                <input type="text" name="no_of_beds" class="form-control mb-2" placeholder="Number of Beds">
+
+                <input type="text" name="no_of_beds" class="form-control mb-2" 
+                    value="{{ old('no_of_beds', $room->no_of_beds ?? '') }}" required>
+
                 <input type="text" name="amenities" class="form-control mb-2" placeholder="Amenities">
-                <input type="number" step="0.01" name="room_rates" class="form-control mb-2" placeholder="Room Rate">
+                <input type="number" step="0.10" name="room_rates" class="form-control mb-2" placeholder="Room Rate">
 
             </div>
             <div class="modal-footer">
@@ -148,7 +151,7 @@
                 <input type="text" name="capacity" class="form-control mb-2" value="{{ $room->capacity }}">
                 <input type="text" name="no_of_beds" class="form-control mb-2" value="{{ $room->no_of_beds }}">
                 <input type="text" name="amenities" class="form-control mb-2" value="{{ $room->amenities }}">
-                <input type="number" step="0.01" name="room_rates" class="form-control mb-2" value="{{ $room->room_rates }}">
+                <input type="number" step="0.10" name="room_rates" class="form-control mb-2" value="{{ $room->room_rates }}">
 
             </div>
 

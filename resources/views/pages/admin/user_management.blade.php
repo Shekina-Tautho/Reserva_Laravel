@@ -25,6 +25,7 @@
             <th>Email</th>
             <th>Phone No.</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
             <td>{{ $user->first_name }} {{ $user->last_name }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->phone_no }}</td>
+            <td></td>
             <td>
                 <!-- EDIT -->
                 <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal{{ $user->user_id }}">

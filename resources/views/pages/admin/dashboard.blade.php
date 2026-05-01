@@ -40,7 +40,7 @@
     <!-- Recent Bookings -->
     <h2 class="fw-bold mb-2">Recent Bookings</h2>
     <div class="tb-dashboard-container my-5 reserva-shadow rounded-4 overflow-hidden">
-        <table class="table align-middle table-hover mb-0 user-table">
+        <table class="table align-middle mb-0 user-table">
             <thead class="table-light">
                 <tr>
                     <th scope="col" class="ps-3">ID</th>
@@ -61,8 +61,11 @@
                         <td>{{ $booking->check_in_date }}</td>
                         <td>{{ $booking->check_out_date }}</td>
                         <td>
-                            <span class="badge bg-{{ $booking->status === 'active' ? 'success' : 'warning' }}">
-                                {{ ucfirst($booking->status) }}
+                            <span class="badge 
+                                {{ $booking->status === 'Confirmed' ? 'bg-success' : '' }}
+                                {{ $booking->status === 'Pending'   ? 'bg-warning' : '' }}
+                                {{ $booking->status === 'Cancelled' ? 'bg-danger'  : '' }}">
+                                {{ $booking->status }}
                             </span>
                         </td>
                     </tr>

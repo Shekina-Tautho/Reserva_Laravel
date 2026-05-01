@@ -9,9 +9,11 @@ class Room extends Model
     protected $table = 'room';          
     protected $primaryKey = 'room_id';
     protected $fillable = [
-        'hotel_id','room_type',
+        'hotel_id',
+        'room_type',
         'capacity',
         'amenities',
+        'no_of_beds',
         'image_path',
     ];
 

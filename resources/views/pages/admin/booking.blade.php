@@ -48,7 +48,10 @@
                 <td>{{ $booking->check_in_date }}</td>
                 <td>{{ $booking->check_out_date }}</td>
                 <td>
-                    <span class="badge {{ $booking->status == 'Confirmed' ? 'bg-success' : 'bg-warning' }}">
+                   <span class="badge 
+                        {{ $booking->status === 'Confirmed' ? 'bg-success' : '' }}
+                        {{ $booking->status === 'Pending'   ? 'bg-warning' : '' }}
+                        {{ $booking->status === 'Cancelled' ? 'bg-danger'  : '' }}">
                         {{ $booking->status }}
                     </span>
                 </td>
@@ -212,8 +215,12 @@
                     @endforeach
                 </select>
 
-                <select name="room_id" id="roomSelect{{ $booking->booking_id }}" class="form-control mb-2">
-                    <option value="">Select Room</option>
+                <select name="room_id" id="roomSelect{{ $booking->booking_id }}" class="form-control mb-2" data-selected="{{ $booking->room_id }}">
+                    @foreach($rooms as $room)
+                        <option value="">
+                            Loading...
+                        </option>
+                    @endforeach
                 </select>
 
                 <select name="employee_id" class="form-control mb-2" required>
@@ -236,9 +243,9 @@
                 <input type="file" name="proof_image" class="form-control mb-2" accept="image/*">
 
                 <select name="status" class="form-control mb-2">
-                    <option {{ $booking->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                    <option {{ $booking->status == 'Confirmed' ? 'selected' : '' }}>Confirmed</option>
-                    <option {{ $booking->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
+                    <option value="Pending" {{ $booking->status == 'Pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="Confirmed" {{ $booking->status == 'Confirmed' ? 'selected' : '' }}>Confirmed</option>
+                    <option value="Cancelled" {{ $booking->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                 </select>
 
                 <div class="modal-footer d-flex justify-content-end">
@@ -283,6 +290,8 @@ document.querySelectorAll('[id^="hotelSelect"]').forEach(hotelSelect => {
         let bookingId = this.id.replace('hotelSelect', '');
         let roomSelect = document.getElementById('roomSelect' + bookingId);
 
+        let selectedRoomId = roomSelect.getAttribute('data-selected');
+
         roomSelect.innerHTML = '<option value="">Loading...</option>';
 
         if (hotelId) {
@@ -290,8 +299,14 @@ document.querySelectorAll('[id^="hotelSelect"]').forEach(hotelSelect => {
                 .then(response => response.json())
                 .then(data => {
                     roomSelect.innerHTML = '<option value="">Select Room</option>';
+
                     data.forEach(room => {
-                        roomSelect.innerHTML += `<option value="${room.room_id}">${room.room_type}</option>`;
+                        let selected = room.room_id == selectedRoomId ? 'selected' : '';
+                        roomSelect.innerHTML += `
+                            <option value="${room.room_id}" ${selected}>
+                                ${room.room_type}
+                            </option>
+                        `;
                     });
                 })
                 .catch(error => {

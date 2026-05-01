@@ -27,9 +27,9 @@ class AdminBookingsController extends Controller
     {
         $request->validate([
             'user_id'       => 'required|exists:users,user_id',
-            'hotel_id'      => 'required|exists:hotels,hotel_id',
-            'room_id'       => 'required|exists:rooms,room_id',
-            'employee_id'   => 'required|exists:employees,employee_id',
+            'hotel_id'      => 'required|exists:hotel,hotel_id',
+            'room_id'       => 'required|exists:room,room_id',
+            'employee_id'   => 'required|exists:employee,employee_id',
             'check_in_date' => ['required', 'date', 'after:today'],
             'check_out_date'=> ['required', 'date', 'after:check_in_date'],
             'proof_image'   => 'nullable|image',
@@ -61,7 +61,6 @@ class AdminBookingsController extends Controller
     {
         $booking = BookingModel::findOrFail($id);
 
-        // Validate the incoming request
         $validated = $request->validate([
             'user_id'       => 'required|exists:users,user_id',
             'hotel_id'      => 'required|exists:hotel,hotel_id',
@@ -73,7 +72,17 @@ class AdminBookingsController extends Controller
             'proof_image'   => 'nullable|image|max:2048',
         ]);
 
-        // Extra check: prevent same-day check-in and check-out
+        $booking->update([
+            'user_id' => $request->user_id,
+            'hotel_id' => $request->hotel_id,
+            'room_id' => $request->room_id,
+            'employee_id' => $request->employee_id,
+            'check_in_date' => $request->check_in_date,
+            'check_out_date' => $request->check_out_date,
+            'status' => $request->status,
+        ]);
+
+        // Prevent same-day check-in/out
         $checkIn  = Carbon::parse($request->check_in_date);
         $checkOut = Carbon::parse($request->check_out_date);
 
@@ -83,18 +92,20 @@ class AdminBookingsController extends Controller
             ]);
         }
 
-        // If a new file is uploaded, store it
+        // Handle file upload
         if ($request->hasFile('proof_image')) {
             $path = $request->file('proof_image')->store('proofs', 'public');
-            $data['proof_image_path'] = $path;
+            $validated['proof_image_path'] = $path;
         } else {
-            // Keep the old path if no new file
-            $data['proof_image_path'] = $booking->proof_image_path;
+            $validated['proof_image_path'] = $booking->proof_image_path;
         }
 
+        dd($validated);
+
+        // Update booking with all validated + proof_image_path
         $booking->update($validated);
 
-        // Notify the user when status changes
+        // Notify if status changed
         if ($booking->wasChanged('status')) {
             $booking->user->notify(new \App\Notifications\BookingStatusChanged($booking));
         }

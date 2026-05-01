@@ -50,13 +50,17 @@ class AdminRoomController extends Controller
             'room_type'  => 'required|string|max:255',
             'capacity'   => 'nullable|string|max:255',
             'amenities'  => 'nullable|string|max:255',
-            'no_of_beds' => 'nullable|string|max:255',
+            'no_of_beds' => 'reqiured|string|max:255',
             'room_rates' => 'required|numeric|min:0',
         ]);
 
         $room->update($validated);
 
-        return back()->with('success', 'Room updated successfully!');
+        if ($room->wasChanged()) {
+            return redirect()->back()->with('success', 'Updated successfully');
+        }
+
+        return redirect()->back();
     }
 
     /**
