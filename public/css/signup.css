@@ -1,128 +1,244 @@
-:root {
-    --main-blue: #0057AB;
-}
-
-html, body {
-  overflow: hidden;
-  font-family: "Poppins", sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: #0057ab;
-}
-
 .main-div {
-  display: flex;
-  min-height: 100vh;
-  background-color: #0057ab;
+    min-height: 100vh;
+    display: flex;
+    overflow: hidden;
+    background-color: #0057ab;
 }
 
-.bg-section-img {
-  max-width: 360px;
-  height: auto;
-}
-
-.bg-section-heading {
-  color: white;
-  max-width: 300px;
-  font-weight: 400;
-  line-height: 50px;
-}
-
-.login-section {
-  background-color: white;
-  border-radius: 40px 0px 0px 40px;
-}
-
-.login-heading {
-  font-size: 50px;
-  color: #0057ab;
-  font-weight: bold;
-  max-width:300px;
-}
-
-.form-login {
-  max-width: 380px;
-}
-
-#signup-button {
-  border-radius: 100px;
-  border:none;
-  background-color: #0057ab;
-  color: #fff;
-  font-weight: bold;
-}
-
-.signup-input {
-  border-radius: 100px;
-  color: #000;
-  border: solid;
-  border-width: 1px;
-  border-color: #9c9c9c;
-  font-size: 16px;
-}
-
-.register-p {
-  margin-top: 50px;
-  font-size: 15px;
-  color: #9c9c9c;
-}
-
-.login-socials-icon {
-  border: solid;
-  border-width: 1px;
-  border-radius: 12px;
-  border-color: #9c9c9c;
-}
-
-input::placeholder {
-  font-size: 14px;
-  color: #9a9a9a;
-}
-
-input:focus {
-  border-color: #0057ab;
-  outline: none;
+.left-section {
+    position: relative;
+    width: 50%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .bg-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-image: url("/images/dotted-arrow-bg.png");
-  background-repeat: no-repeat;
-  background-position: right -250px center;
-  background-size: 130%; /* or cover */
-  pointer-events: none;
-  z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-image: url('/images/dotted-arrow-bg.png');
+    background-repeat: no-repeat;
+    background-position: right -250px center;
+    background-size: 130%;
+    pointer-events: none;
+    z-index: 1;
 }
 
-.login-socials-icon {
-  background-color: white;
+.bg-section-img {
+    max-width: 360px;
+    height: auto;
+    z-index: 2;
+}
+
+.login-section {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 40px 0px 0px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 3rem;
+    min-width: 0;
+}
+
+.login-heading {
+    font-size: 50px;
+    color: #0057ab;
+    font-weight: bold;
+    max-width: 500px;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.form-login {
+    width: 100%;
+    max-width: 450px;
+    padding: 0 1rem;
 }
 
 .terms {
-    color: 505050;
-    font-size: .8em;
+    font-size: 0.85rem;
+    color: #9c9c9c;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.register-p {
+    font-size: 15px;
+    margin-top: 50px;
+    color: #9c9c9c;
+    text-align: center;
 }
 
 .blue {
-    color: var(--main-blue);
+    color: #0057ab; 
+    font-weight: 600;
 }
 
 .signin-link {
-  text-decoration: none;
-  cursor: pointer;
+    color: #0057ab;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.signin-link:hover {
+    text-decoration: underline;
+}
+
+.signup-input {
+    border: solid;
+    border-radius: 100px;
+    color: black;
+    border-width: 1px;
+    border-color: #9c9c9c;
+    padding: 14px 16px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    width: 100%;
+}
+
+.signup-input:focus {
+    outline: none;
+    border-color: #0057ab;
+    box-shadow: 0 0 0 3px rgba(0, 87, 171, 0.1);
+    background: #fff;
 }
 
 #signup-button {
-  border-radius: 100px;
-  border:none;
   background-color: #0057ab;
+  border: none;
+  border-radius: 100px;
   color: #fff;
   font-weight: bold;
+  font-size: 1rem;
+  padding: 16px 32px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: 280px;
+  max-width: 90%;
+  margin: 0 auto;
+  display: block;
+}
+
+#signup-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 87, 171, 0.4);
+}
+
+.register-p a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 992px) {
+    .main-div {
+        flex-direction: column;
+        background-color: #0057ab;
+    }
+    
+    .bg-overlay {
+        display: none !important;
+    }
+    
+    .left-section {
+        width: 100%;
+        height: 40vh;
+        min-height: 320px;
+        padding: 4rem 2rem;
+        background-color: #0057ab;
+    }
+    
+    .bg-section-img {
+        max-width: 280px;
+    }
+    
+    .login-section {
+        width: 100%;
+        height: 60vh;
+        border-radius: 0;
+        padding: 4rem 2rem;
+        margin-top: 2rem; 
+    }
+    
+    .login-heading {
+        font-size: 2.5rem;
+        max-width: 100%;
+        margin-bottom: 3rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .left-section {
+        height: 35vh;
+        min-height: 280px;
+        padding: 5rem 1.5rem;
+    }
+    
+    .login-section {
+        padding: 3.5rem 1.5rem;
+        height: 65vh;
+        margin-top: 1.5rem;
+    }
+    
+    .login-heading {
+        font-size: 2rem;
+        margin-bottom: 2.5rem !important;
+    }
+    
+    .form-login {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-section {
+        padding: 2.5rem 1.25rem;
+        height: 70vh;
+    }
+    
+    .login-heading {
+        font-size: 1.75rem;
+        margin-bottom: 2rem !important;
+    }
+    
+    .d-flex.gap-2 {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .left-section {
+        padding: 3rem 1rem;
+        min-height: 260px;
+    }
+    
+    .bg-section-img {
+        max-width: 250px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .left-section {
+        height: 50vh;
+        padding: 2rem 1rem;
+    }
+    
+    .login-section {
+        height: 50vh;
+        padding: 2rem 1.5rem;
+        margin-top: 1rem;
+    }
+    
+    .login-heading {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem !important;
+    }
 }

@@ -6,15 +6,15 @@
 
 <div class="main-div">
 
-    <!-- LEFT SECTION -->
-    <div class="d-flex flex-column justify-content-center align-items-center w-50 position-relative">
+    <div class="left-section d-flex flex-column justify-content-center align-items-center position-relative">
         <div class="bg-overlay"></div>
         <img class="bg-section-img"
             src="{{ asset('images/reserva-branding.png') }}" 
+            alt="Reserva Branding"
         >
     </div>
 
-    <div class="login-section d-flex justify-content-center align-items-center w-50">
+    <div class="login-section d-flex justify-content-center align-items-center">
         <div class="form-login text-center">
             <h1 class="login-heading mb-4">Welcome Back!</h1>
 
@@ -45,14 +45,14 @@
                     class="form-control login-input login-password mb-4"
                     required
                 >
-                <button type="submit" id="login-button" class="w-100 py-2">
+                <button type="submit" id="login-button" class="py-2">
                     Log In
                 </button>
             </form>
 
             <p class="register-p">
                 Not a member? 
-                <a href="{{ route('register') }}" style="color: #0057AB; text-decoration: none; font-weight: 600">Register Now</a>
+                <a href="{{ route('register') }}" class="signup-link">Register Now</a>
             </p>
 
         </div>
