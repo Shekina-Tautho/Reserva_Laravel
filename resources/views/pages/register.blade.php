@@ -5,18 +5,19 @@
 <link rel="stylesheet" href="{{ asset('css/signup.css') }}">
 
 <div class="main-div">
-
-    <!-- LEFT SECTION -->
-    <div class="d-flex flex-column justify-content-center align-items-center w-50 position-relative">
+    <!-- LEFT SECTION - Mobile responsive -->
+    <div class="left-section d-flex flex-column justify-content-center align-items-center position-relative">
         <div class="bg-overlay"></div>
         <img class="bg-section-img"
             src="{{ asset('images/reserva-branding.png') }}" 
+            alt="Reserva Branding"
         >
     </div>
 
-    <div class="login-section d-flex justify-content-center align-items-center w-50">
+    <!-- RIGHT SECTION - Form -->
+    <div class="login-section d-flex justify-content-center align-items-center">
         <div class="form-login flex-column">
-            <h1 class="login-heading text-center mx-auto mb-4">Let's Get Started</h1>
+            <h1 class="login-heading text-center mb-4">Let's Get Started</h1>
 
             @if ($errors->any())
                 <div class="alert alert-danger text-start">
@@ -77,7 +78,7 @@
                     pattern="^093[0-9]{9}$"
                 >
 
-                <button type="submit" id="signup-button" class="w-100 py-2">
+                <button type="submit" id="signup-button" class="py-2">
                     Sign Up
                 </button>
             </form>
@@ -90,12 +91,10 @@
 
             <p class="register-p">
                 Already have an account? 
-                <a href="{{ route('login') }}" class="signin-link">Sign in.</a>
+                <a href="{{ route('login') }}" class="signin-link">Sign in</a>
             </p>
-
         </div>
     </div>
-
 </div>
 
 @endsection
