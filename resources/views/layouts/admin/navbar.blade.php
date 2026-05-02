@@ -15,12 +15,12 @@
 <body>
 
 <div class="d-flex">
-
-    <!-- SIDEBAR -->
-    <div class="sidebar" style="width:250px;">
+    <!-- SIDEBAR (desktop only) -->
+    <div class="sidebar d-none d-lg-flex flex-column" style="width:250px; min-height:100vh;">
         <div>
-            <div class="logo">
-                <img src="{{ asset('images/adminlogo.png') }}">
+            <!--Laravel Logo-->
+            <div class="logo align-items-center justify-content-center">
+                <img src="{{ asset('/images/adminlogo.png') }}" alt="Reserva logo" class="img-fluid">
             </div>
 
             <nav>
@@ -47,7 +47,8 @@
             </nav>
         </div>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <!-- LOGOUT stays at bottom -->
+        <form method="POST" action="{{ route('logout') }}" class="mt-auto">
             @csrf
             <button type="submit" class="logout-btn">
                 <img src="{{ asset('images/logouticon.png') }}" alt="">
@@ -61,6 +62,68 @@
         @yield('content')
     </div>
 
+</div>
+
+<!-- MOBILE NAVBAR -->
+<div class="d-lg-none">
+    <!--Logo-->
+    <div class="fixed-top bg-white py-2 shadow-sm px-3 d-flex justify-content-between align-items-center">
+    
+        <!-- Left: Logo -->
+        <img src="{{ asset('/images/adminlogo.png') }}" 
+            alt="Reserva logo" 
+            class="img-fluid" 
+            style="max-height:50px;">
+
+        <!-- Right: User -->
+        <div class="d-flex align-items-center gap-2">
+            <div class="profile-initial">
+                {{ strtoupper(substr(Auth::guard('employee')->user()->first_name, 0, 1)) }}
+            </div>
+            <span class="text-dark">
+                {{ Auth::guard('employee')->user()->first_name }}
+            </span>
+        </div>
+
+    </div>
+
+    <nav class="fixed-bottom w-100">
+        <ul class="mobile-nav d-flex justify-content-around align-items-center bg-white shadow p-2 m-0">
+            <li>
+                <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                    <i class="bi bi-card-list" style="color:#0057AB;"></i>
+                </a>
+            </li>
+            <li>
+                <a class="{{ request()->routeIs('admin.booking') ? 'active' : '' }}" href="{{ route('admin.booking') }}">
+                    <i class="bi bi-calendar-check-fill" style="color:#0057AB;"></i>
+                </a>
+            </li>
+            <li>
+                <a class="{{ request()->routeIs('admin.hotel') ? 'active' : '' }}" href="{{ route('admin.hotel') }}">
+                    <i class="fa-solid fa-hotel" style="color:#0057AB;"></i>
+                </a>
+            </li>
+            <li>
+                <a class="{{ request()->routeIs('admin.room') ? 'active' : '' }}" href="{{ route('admin.room') }}">
+                    <i class="fas fa-door-open" style="color:#0057AB;"></i>
+                </a>
+            </li>
+            <li>
+                <a class="{{ request()->routeIs('admin.user_management') ? 'active' : '' }}" href="{{ route('admin.user_management') }}">
+                    <i class="bi bi-people-fill" style="color:#0057AB;"></i>
+                </a>
+            </li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn p-0 border-0 bg-transparent">
+                        <i class="bi bi-box-arrow-right" style="color:#0057AB;"></i>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
