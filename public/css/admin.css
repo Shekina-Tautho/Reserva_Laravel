@@ -151,4 +151,18 @@ table .action-icons img:hover {
   h2.fw-bold {
     font-size: 1.4rem;
   }
+
+  .card-body img {
+        width: 18px;
+        height: 16px;
+    }
+
+    .card {
+        border-radius: 16px;
+    }
+
+    .card small {
+        display: block;
+        margin-bottom: 4px;
+    }
 }

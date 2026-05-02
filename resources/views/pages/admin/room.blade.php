@@ -10,9 +10,20 @@
 
 <link rel="stylesheet" href="{{ asset('/css/admin.css') }}"/>
 
+<!-- Topbar -->
+<div class="topbar d-flex align-items-center justify-content-end">
+    <div class="profile-initial">
+        {{ strtoupper(substr(Auth::guard('employee')->user()->first_name, 0, 1)) }}
+    </div>
+    <span class="text-dark">{{ Auth::guard('employee')->user()->first_name }}</span>
+</div>
+
 <!-- Page Header -->
-<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start mb-4">
-    <div><h2 class="fw-bold mb-2">Rooms</h2></div>
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start align-items-md-center gap-2 mb-4">
+    <div>
+        <h2 class="fw-bold mb-2">Rooms</h2>
+    </div>
+
     <div class="mt-3 mt-md-4 d-flex gap-2 flex-wrap justify-content-md-end">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRoomModal">
             Add Room
@@ -21,50 +32,54 @@
 </div>
 
 <!-- Rooms Table -->
-<div class="tb-hotels-container reserva-shadow rounded-4 overflow-hidden">
-    <table class="table align-middle table-hover mb-0 user-table">
-        <thead class="table-light">
-            <tr>
-                <th class="ps-3">ID</th>
-                <th>Room Type</th>
-                <th>Hotel</th>
-                <th>Rate</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($rooms as $room)
-            <tr>
-                <td>{{ $room->room_id }}</td>
-                <td class="ps-3">{{ $room->room_type }}</td>
-                <td>{{ $room->hotel->name ?? 'N/A' }}</td>
-                <td> ${{ $room->room_rates }}</td>
-                <td class="text-center">
-                    <div class="d-flex gap-2 justify-content-center">
+<div class="tb-rooms-container reserva-shadow rounded-4 overflow-hidden d-none d-md-block">
+    <div class="table-responsive">
+        <table class="table align-middle table-hover mb-0 user-table">
+            <thead class="table-light">
+                <tr>
+                    <th class="ps-3">ID</th>
+                    <th>Room Type</th>
+                    <th>Hotel</th>
+                    <th>Rate</th>
+                    <th></th>
+                </tr>
+            </thead>
 
-                        <!-- PREVIEW -->
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#previewRoomModal{{ $room->room_id }}">
-                            <img src="{{ asset('/images/previewicon.png') }}">
-                        </button>
+            <tbody>
+                @forelse($rooms as $room)
+                <tr>
+                    <td>{{ $room->room_id }}</td>
+                    <td>{{ $room->room_type }}</td>
+                    <td>{{ $room->hotel->name ?? 'N/A' }}</td>
+                    <td> ${{ $room->room_rates }}</td>
+                    
+                    <td class="text-center">
+                        <div class="action icons d-flex gap-2 justify-content-center flex-wrap">
 
-                        <!-- EDIT -->
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->room_id }}">
-                            <img src="{{ asset('/images/editicon.png') }}">
-                        </button>
+                            <!-- PREVIEW -->
+                            <button class="btn p-2" data-bs-toggle="modal" data-bs-target="#previewRoomModal{{ $room->room_id }}">
+                                <img src="{{ asset('/images/previewicon.png') }}">
+                            </button>
 
-                        <!-- DELETE -->
-                        <button class="btn" data-bs-toggle="modal" data-bs-target="#deleteRoomModal{{ $room->room_id }}">
-                            <img src="{{ asset('/images/deleteicon.png') }}">
-                        </button>
+                            <!-- EDIT -->
+                            <button class="btn p-2" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->room_id }}">
+                                <img src="{{ asset('/images/editicon.png') }}">
+                            </button>
 
-                    </div>
-                </td>
-            </tr>
-            @empty
-            <tr><td colspan="5" class="text-center">No rooms found</td></tr>
-            @endforelse
-        </tbody>
-    </table>
+                            <!-- DELETE -->
+                            <button class="btn p-2" data-bs-toggle="modal" data-bs-target="#deleteRoomModal{{ $room->room_id }}">
+                                <img src="{{ asset('/images/deleteicon.png') }}">
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                @empty
+                <tr><td colspan="5" class="text-center">No rooms found</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- ADD ROOM MODAL -->
@@ -191,5 +206,92 @@
     </div>
 </div>
 @endforeach
+
+<!-- MOBILE ROOMS CARD VIEW -->
+<div class="d-block d-md-none">
+
+@forelse($rooms as $room)
+    <div class="card mb-4 shadow-sm border-0 rounded-4">
+        <div class="card-body">
+
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-start mb-2">
+                <div>
+                    <h6 class="mb-1 fw-bold">
+                        #{{ $room->room_id }}
+                    </h6>
+                    <small class="text-muted">
+                        {{ $room->room_type }}
+                    </small>
+                </div>
+
+                <span class="badge bg-dark">
+                    ${{ $room->room_rates }}
+                </span>
+            </div>
+
+            <!-- Details -->
+            <div class="small text-muted">
+
+                <div class="mb-1">
+                    <strong>Hotel:</strong>
+                    {{ $room->hotel->name ?? 'N/A' }}
+                </div>
+
+                <div class="mb-1">
+                    <strong>Capacity:</strong>
+                    {{ $room->capacity }}
+                </div>
+
+                <div class="mb-1">
+                    <strong>Beds:</strong>
+                    {{ $room->no_of_beds }}
+                </div>
+
+                <div>
+                    <strong>Amenities:</strong><br>
+                    {{ $room->amenities }}
+                </div>
+
+            </div>
+
+            <hr>
+
+            <!-- Actions -->
+            <div class="d-flex justify-content-between gap-2">
+
+                <!-- PREVIEW -->
+                <button class="btn btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#previewRoomModal{{ $room->room_id }}">
+                    <img src="{{ asset('/images/previewicon.png') }}" alt="">
+                </button>
+
+                <!-- EDIT -->
+                <button class="btn btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editRoomModal{{ $room->room_id }}">
+                    <img src="{{ asset('/images/editicon.png') }}" alt="">
+                </button>
+
+                <!-- DELETE -->
+                <button class="btn btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteRoomModal{{ $room->room_id }}">
+                    <img src="{{ asset('/images/deleteicon.png') }}" alt="">
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+@empty
+    <div class="text-center text-muted">
+        No rooms found
+    </div>
+@endforelse
+
+</div>
 
 @endsection
